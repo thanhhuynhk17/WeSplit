@@ -1,13 +1,12 @@
-# WeSplit Project
+# WeSplit (WPF Project)
 
 Easy way to manage debts between friends.
 
 ## Contributors
 
-```markdown
-* [thanhhuynhk17](https://github.com/thanhhuynhk17/)
-* [greent99](https://github.com/greent99/)
-```
+[thanhhuynhk17](https://github.com/thanhhuynhk17/)
+
+[greent99](https://github.com/greent99/)
 
 ## Installation
 
