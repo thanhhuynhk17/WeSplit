@@ -1,4 +1,9 @@
 .vs/
 packages/
+<<<<<<< HEAD
 /WeSplit/bin
 /WeSplit/obj
+=======
+/WeSplit/bin/Debug/
+/WeSplit/obj/Debug/
+>>>>>>> origin/main
