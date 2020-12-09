@@ -7,6 +7,8 @@
 
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:userControl="clr-namespace:WeSplit.UserControlWeSplit"
+        DataContext="{StaticResource SplashScreenViewModel}"
+        
         mc:Ignorable="d"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -16,36 +18,34 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         
-        ResizeMode="NoResize"
+        Name="splashScreenWindow"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
-        Title="SplashScreenWindow" Height="500" Width="800">
+        Title="Splash Screen Window Title" 
+        Height="500" Width="800" ResizeMode="NoResize">
+
+
     <Grid>
+        
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!--Control Bar-->
-        <userControl:ControlBarUC/>
-        <!--Control Bar/-->
-
         <!--Suggest -->
-        <materialDesign:Card Grid.Row="1" Margin="20"
+        <materialDesign:Card Grid.Row="0" Margin="20"
                              HorizontalAlignment="Stretch"
                              VerticalAlignment="Stretch">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="200" />
+                    <RowDefinition Height="250" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
+                
+                <!--Image-->
                 <Image Source="Assets/dau-tieng-lake.jpg" 
-                       Height="200" 
+                       Height="250" 
                        Stretch="UniformToFill" />
                 <Button Grid.Row="0"
                         Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
@@ -54,31 +54,38 @@
                         Margin="0 0 16 -20">
                     <materialDesign:PackIcon Kind="ShareVariant" />
                 </Button>
+                <!--Image-->
+                
+                <!--Describe-->
                 <StackPanel Grid.Row="1" Margin="8 24 8 4">
                     <TextBlock Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
                                Margin="0"
-                               Text="Hồ Dầu Tiếng - Bình Dương"/>
-                    <Viewbox Margin="0 4 0 8"
-                             Height="16"
-                             HorizontalAlignment="Left">
-                        <materialDesign:RatingBar Value="3"
-                                                  Orientation="Horizontal"
-                                                  Foreground="Gold"
-                                                  Margin="0" />
-                    </Viewbox>
+                               Text="Hồ Dầu Tiếng - Bình Dương"
+                               FontSize="20"/>
 
                     <TextBlock
         Style="{StaticResource MaterialDesignBody1TextBlock}"
         TextWrapping="Wrap"
         VerticalAlignment="Center" Text="Một khu vực hồ rộng lớn chứa nhiều nước. Có rất nhiều trâu đi thành đàn quanh hồ vào mỗi buổi chiều. Bò thì chưa thấy."/>
+                    
                 </StackPanel>
+                <!--Describe-->
+
+                <!--Don't show again checkbox-->
+                <CheckBox Grid.Row="2" IsChecked="False" HorizontalAlignment="Right"
+                          Style="{StaticResource MaterialDesignLightCheckBox}"
+                          Content="Không hiện hộp thoại này khi khởi động." 
+                          Margin="10"/>
+                <!--Don't show again checkbox-->
+
             </Grid>
         </materialDesign:Card>
         <!--Suggest-->
 
         <!--Loading99%-->
-        <ProgressBar Grid.Row="2"
-  IsIndeterminate="True" />
+        <ProgressBar Grid.Row="1" Height="10"
+                     Value="{Binding ProgressVal}"/>
+        
         <!--Loading99%/-->
 
     </Grid>
