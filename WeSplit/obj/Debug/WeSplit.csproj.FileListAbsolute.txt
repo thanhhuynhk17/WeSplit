@@ -31,3 +31,42 @@ D:\HocTap\git repos\WeSplit\WeSplit\obj\Debug\WeSplit.csprojAssemblyReference.ca
 D:\HocTap\git repos\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\ControlBarUC.g.cs
 D:\HocTap\git repos\WeSplit\WeSplit\obj\Debug\GeneratedInternalTypeHelper.g.cs
 D:\HocTap\git repos\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\ControlBarUC.baml
+C:\WPF\WeSplit\WeSplit\WeSplit\bin\Debug\WeSplit.exe.config
+C:\WPF\WeSplit\WeSplit\WeSplit\bin\Debug\WeSplit.exe
+C:\WPF\WeSplit\WeSplit\WeSplit\bin\Debug\WeSplit.pdb
+C:\WPF\WeSplit\WeSplit\WeSplit\bin\Debug\ControlzEx.dll
+C:\WPF\WeSplit\WeSplit\WeSplit\bin\Debug\EntityFramework.dll
+C:\WPF\WeSplit\WeSplit\WeSplit\bin\Debug\EntityFramework.SqlServer.dll
+C:\WPF\WeSplit\WeSplit\WeSplit\bin\Debug\MaterialDesignColors.dll
+C:\WPF\WeSplit\WeSplit\WeSplit\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\WPF\WeSplit\WeSplit\WeSplit\bin\Debug\Microsoft.Xaml.Behaviors.dll
+C:\WPF\WeSplit\WeSplit\WeSplit\bin\Debug\ControlzEx.pdb
+C:\WPF\WeSplit\WeSplit\WeSplit\bin\Debug\ControlzEx.xml
+C:\WPF\WeSplit\WeSplit\WeSplit\bin\Debug\EntityFramework.xml
+C:\WPF\WeSplit\WeSplit\WeSplit\bin\Debug\EntityFramework.SqlServer.xml
+C:\WPF\WeSplit\WeSplit\WeSplit\bin\Debug\MaterialDesignColors.pdb
+C:\WPF\WeSplit\WeSplit\WeSplit\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\WPF\WeSplit\WeSplit\WeSplit\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\WPF\WeSplit\WeSplit\WeSplit\bin\Debug\Microsoft.Xaml.Behaviors.pdb
+C:\WPF\WeSplit\WeSplit\WeSplit\bin\Debug\Microsoft.Xaml.Behaviors.xml
+C:\WPF\WeSplit\WeSplit\WeSplit\obj\Debug\WeSplit.csprojAssemblyReference.cache
+C:\WPF\WeSplit\WeSplit\WeSplit\obj\Debug\MainWindow.g.cs
+C:\WPF\WeSplit\WeSplit\WeSplit\obj\Debug\SplashScreenWindow.g.cs
+C:\WPF\WeSplit\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\ControlBarUC.g.cs
+C:\WPF\WeSplit\WeSplit\WeSplit\obj\Debug\App.g.cs
+C:\WPF\WeSplit\WeSplit\WeSplit\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\WPF\WeSplit\WeSplit\WeSplit\obj\Debug\WeSplit_MarkupCompile.cache
+C:\WPF\WeSplit\WeSplit\WeSplit\obj\Debug\WeSplit_MarkupCompile.lref
+C:\WPF\WeSplit\WeSplit\WeSplit\obj\Debug\App.baml
+C:\WPF\WeSplit\WeSplit\WeSplit\obj\Debug\MainWindow.baml
+C:\WPF\WeSplit\WeSplit\WeSplit\obj\Debug\SplashScreenWindow.baml
+C:\WPF\WeSplit\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\ControlBarUC.baml
+C:\WPF\WeSplit\WeSplit\WeSplit\obj\Debug\WeSplit.g.resources
+C:\WPF\WeSplit\WeSplit\WeSplit\obj\Debug\WeSplit.Properties.Resources.resources
+C:\WPF\WeSplit\WeSplit\WeSplit\obj\Debug\WeSplit.csproj.GenerateResource.cache
+C:\WPF\WeSplit\WeSplit\WeSplit\obj\Debug\WeSplit.csproj.CoreCompileInputs.cache
+C:\WPF\WeSplit\WeSplit\WeSplit\obj\Debug\WeSplit.csproj.CopyComplete
+C:\WPF\WeSplit\WeSplit\WeSplit\obj\Debug\WeSplit.exe
+C:\WPF\WeSplit\WeSplit\WeSplit\obj\Debug\WeSplit.pdb
+C:\WPF\WeSplit\WeSplit\WeSplit\obj\Debug\Member.g.cs
+C:\WPF\WeSplit\WeSplit\WeSplit\obj\Debug\Member.baml
