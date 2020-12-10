@@ -4,32 +4,46 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                 xmlns:local="clr-namespace:WeSplit.UserControlWeSplit"
-                xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              
+                xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                
+                Name="ControlBar"
                 mc:Ignorable="d" 
                 d:DesignHeight="450" d:DesignWidth="800">
-    
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="MouseLeftButtonDown">
+            <i:InvokeCommandAction Command="{Binding MouseMoveWindowCmd}"
+                                   CommandParameter="{Binding ElementName=ControlBar}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     
     <Grid>
         <materialDesign:ColorZone Mode="PrimaryMid"
-                                  Padding="16">
+                                  Padding="5">
             <DockPanel>
                 <!--Control Bar Buttons-->
                 <StackPanel DockPanel.Dock="Right" Background="Transparent" Orientation="Horizontal">
                     <!--WindowMinimize-->
-                    <Button ToolTip="" >
+                    <Button Command="{Binding MinimizeWindowCmd}"
+                            CommandParameter="{Binding ElementName=ControlBar}"
+                            ToolTip="Minimize" >
                         <materialDesign:PackIcon Kind="WindowMinimize" />
                     </Button>
                     <!--WindowMinimize/-->
 
                     <!--WindowRestore-->
-                    <Button ToolTip="" >
+                    <Button Command="{Binding RestoreWindowCmd}"
+                            CommandParameter="{Binding ElementName=ControlBar}"
+                            ToolTip="Restore" >
                         <materialDesign:PackIcon Kind="WindowRestore" />
                     </Button>
                     <!--WindowRestore/-->
 
                     <!--WindowClose-->
-                    <Button ToolTip="" >
+                    <Button Command="{Binding CloseWindowCmd}"
+                            CommandParameter="{Binding ElementName=ControlBar}"
+                            ToolTip="Close" >
                         <materialDesign:PackIcon Kind="WindowClose" />
                     </Button>
                     <!--WindowClose/-->
@@ -42,71 +56,49 @@
                               VerticalAlignment="Center" Margin="10 0"
                               DockPanel.Dock="Right" />
                 <!--Switch theme-->
+                
+                <!--Left Content-->
+                <StackPanel Orientation="Horizontal"
+                            materialDesign:RippleAssist.IsCentered="True">
+                    <!--Hamburger Toggle-->
+                    <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
+                    <!--Hamburger Toggle/-->
 
-                <StackPanel
-      Orientation="Horizontal"
-      materialDesign:RippleAssist.IsCentered="True">
-                    <ToggleButton
-        Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
-                    <ComboBox
-        SelectedIndex="0"
-        Margin="8 0 0 0"
-        BorderThickness="0"
-        materialDesign:ColorZoneAssist.Mode="Standard"
-        materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource MaterialDesignPaper}"
-        BorderBrush="{DynamicResource MaterialDesignPaper}">
-                        <ComboBoxItem>
-                            Android
-                        </ComboBoxItem>
-                    </ComboBox>
-                    <materialDesign:ColorZone
-        Mode="Standard"
-        Padding="8 4 8 4"
-        CornerRadius="2"
-        Panel.ZIndex="1"
-        Margin="16 0 0 0"
-        materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                    <!--Search Box-->
+                    <materialDesign:ColorZone Mode="Standard" Padding="8 4 8 4"
+                                              CornerRadius="2" Panel.ZIndex="1"
+                                              Margin="16 0 0 0"
+                                              materialDesign:ShadowAssist.ShadowDepth="Depth1">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition
-              Width="Auto" />
-                                <ColumnDefinition
-              Width="*" />
-                                <ColumnDefinition
-              Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <Button
-            Style="{DynamicResource MaterialDesignToolButton}">
-                                <materialDesign:PackIcon
-              Kind="Magnify"
-              Opacity=".56" />
+
+                            <TextBox Grid.Column="0" Margin="8 0 0 0"
+                                     materialDesign:HintAssist.Hint="Search..."
+                                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                     BorderThickness="0" MinWidth="200" VerticalAlignment="Center" />
+                            <!--Search Button-->
+                            <Button Style="{DynamicResource MaterialDesignToolButton}"
+                                    Grid.Column="2">
+                                <materialDesign:PackIcon Kind="Magnify" Opacity=".56"
+                                                         Margin="8 0 0 0" />
                             </Button>
-                            <TextBox
-            Grid.Column="1"
-            Margin="8 0 0 0"
-            materialDesign:HintAssist.Hint="Build a search bar"
-            materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-            BorderThickness="0"
-            MinWidth="200"
-            VerticalAlignment="Center" />
-                            <Button
-            Style="{DynamicResource MaterialDesignToolButton}"
-            Grid.Column="2">
-                                <materialDesign:PackIcon
-              Kind="Microphone"
-              Opacity=".56"
-              Margin="8 0 0 0" />
-                            </Button>
+                            <!--Search Button/-->
+
                         </Grid>
                     </materialDesign:ColorZone>
-                    <Button
-        Style="{DynamicResource MaterialDesignToolForegroundButton}"
-        Margin="8 0 0 0"
-        Panel.ZIndex="0">
-                        <materialDesign:PackIcon
-          Kind="Send" />
-                    </Button>
+                    <!--Search Box/-->
+
+                    
+                    <!--Window Title-->
+                    <TextBlock VerticalAlignment="Center" Margin="20 0 0 0" Text="{Binding Tag, ElementName=ControlBar}"/>
+                    <!--Window Title/-->
+
                 </StackPanel>
+                <!--Left Content/-->
+
             </DockPanel>
         </materialDesign:ColorZone>
     </Grid>

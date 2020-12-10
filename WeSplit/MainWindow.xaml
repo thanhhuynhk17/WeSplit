@@ -16,14 +16,22 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         
+        Name="mainWindow"
         ResizeMode="NoResize"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="800" Width="1200">
+        Title="Main Window Title" Height="600" Width="1000">
     <Grid>
-        <!--Control Bar-->
-        <userControl:ControlBarUC/>
-        <!--Control Bar/-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <!--Control Bar-->
+            <userControl:ControlBarUC Tag="{Binding Title, ElementName=mainWindow}"/>
+            <!--Control Bar/-->
+        </Grid>
         
     </Grid>
 </Window>

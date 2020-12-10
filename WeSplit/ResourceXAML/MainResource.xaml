@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:WeSplit.ResourceXAML"
+                    xmlns:viewmodel="clr-namespace:WeSplit.ViewModel">
+    <viewmodel:MainViewModel x:Key="MainViewModel"/>
+    <viewmodel:SplashScreenViewModel x:Key="SplashScreenViewModel"/>
+    
+</ResourceDictionary>
