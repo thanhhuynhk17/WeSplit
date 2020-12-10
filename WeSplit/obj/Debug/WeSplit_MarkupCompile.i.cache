@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\WPF\WeSplit\WeSplit\App.xaml
-4226860891
+6-224857506
 
-22481999765
+24-295831716
 29139701678
-MainWindow.xaml;ResourceXAML\MainResource.xaml;SplashScreenWindow.xaml;UserControlWeSplit\ControlBarUC.xaml;
+AddMemberWindow.xaml;MainWindow.xaml;MemberWindow.xaml;ResourceXAML\MainResource.xaml;SplashScreenWindow.xaml;UserControlWeSplit\ControlBarUC.xaml;
 
-False
+True
 
