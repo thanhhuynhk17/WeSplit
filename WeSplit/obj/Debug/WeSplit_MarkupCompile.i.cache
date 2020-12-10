@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\WPF\WeSplit\WeSplit\WeSplit\obj\Debug\
+C:\WPF\WeSplit\WeSplit\obj\Debug\
 WeSplit
 none
 false
 DEBUG;TRACE
-C:\WPF\WeSplit\WeSplit\WeSplit\App.xaml
-4-729879687
-2-1556844510
-20-121704627
-27-358884877
-MainWindow.xaml;Member.xaml;SplashScreenWindow.xaml;UserControlWeSplit\ControlBarUC.xaml;
+C:\WPF\WeSplit\WeSplit\App.xaml
+4226860891
 
-False
+22481999765
+29139701678
+MainWindow.xaml;ResourceXAML\MainResource.xaml;SplashScreenWindow.xaml;UserControlWeSplit\ControlBarUC.xaml;
+
+True
 

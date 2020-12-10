@@ -93,9 +93,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Member.xaml.cs">
-      <DependentUpon>Member.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Model\journey.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -201,9 +198,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Assets\logo.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
