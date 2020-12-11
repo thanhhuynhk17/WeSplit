@@ -1,4 +1,4 @@
 .vs/
 packages/
-/WeSplit/bin/Debug/
-/WeSplit/obj/Debug/
+/WeSplit/bin
+/WeSplit/obj

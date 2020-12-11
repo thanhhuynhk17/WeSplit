@@ -60,9 +60,18 @@
                 <!--Left Content-->
                 <StackPanel Orientation="Horizontal"
                             materialDesign:RippleAssist.IsCentered="True">
-                    <!--Hamburger Toggle-->
-                    <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
-                    <!--Hamburger Toggle/-->
+                    <!--Logo-->
+                    <Image Source="/Assets/logo.ico"
+                           Width="40" Height="40" Margin="0">
+                        <Image.Effect>
+                            <DropShadowEffect ShadowDepth="5"
+                                              Direction="270"
+                                              Color="Black"
+                                              Opacity="0.5"
+                                              BlurRadius="10"/>
+                        </Image.Effect>
+                    </Image>
+                    <!--Logo/-->
 
                     <!--Search Box-->
                     <materialDesign:ColorZone Mode="Standard" Padding="8 4 8 4"
@@ -101,6 +110,7 @@
 
             </DockPanel>
         </materialDesign:ColorZone>
+
     </Grid>
     
     

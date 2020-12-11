@@ -4,20 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace WeSplit.ViewModel
 {
     public class MainViewModel: BaseViewModel
     {
-        // Constructor
-        bool isLoaded = false;
-        public MainViewModel()
-        {
-            isLoaded = true;
-            if (!isLoaded)
-            {
-                MessageBox.Show($"{isLoaded} boolean value");
-            }
-        }
+
     }
 }

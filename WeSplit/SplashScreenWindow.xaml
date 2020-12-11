@@ -7,9 +7,11 @@
 
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:userControl="clr-namespace:WeSplit.UserControlWeSplit"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         DataContext="{StaticResource SplashScreenViewModel}"
         
         mc:Ignorable="d"
+        
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -24,7 +26,14 @@
         Title="Splash Screen Window Title" 
         Height="500" Width="800" ResizeMode="NoResize">
 
-
+    <!--Trigger-->
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCmd}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <!--Trigger-->
+    
     <Grid>
         
         <Grid.RowDefinitions>
@@ -35,10 +44,11 @@
         <!--Suggest -->
         <materialDesign:Card Grid.Row="0" Margin="20"
                              HorizontalAlignment="Stretch"
-                             VerticalAlignment="Stretch">
+                             VerticalAlignment="Stretch"
+                             materialDesign:ShadowAssist.ShadowDepth="Depth5">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="250" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
@@ -47,14 +57,42 @@
                 <Image Source="Assets/dau-tieng-lake.jpg" 
                        Height="250" 
                        Stretch="UniformToFill" />
-                <Button Grid.Row="0"
-                        Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Bottom"
-                        Margin="0 0 16 -20">
-                    <materialDesign:PackIcon Kind="ShareVariant" />
-                </Button>
                 <!--Image-->
+                
+                <!--Logo-->
+                <Grid Grid.Row="0" Opacity="0.8"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      materialDesign:ShadowAssist.ShadowDepth="Depth5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Text="WeSplit" Margin="0 0 10 0"
+                               Style="{StaticResource MaterialDesignHeadline1TextBlock}">
+                        <TextBlock.Effect>
+                            <DropShadowEffect ShadowDepth="10"
+                                              Direction="270"
+                                              Color="Black"
+                                              Opacity="0.7"
+                                              BlurRadius="10"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
+                    <Image Grid.Column="1" 
+                           Source="Assets/logo.ico">
+                        <Image.Effect>
+                            <DropShadowEffect ShadowDepth="10"
+                                              Direction="270"
+                                              Color="Black"
+                                              Opacity="0.7"
+                                              BlurRadius="10"/>
+                        </Image.Effect>
+                    </Image>
+
+                </Grid>
+
+                <!--Logo/-->
                 
                 <!--Describe-->
                 <StackPanel Grid.Row="1" Margin="8 24 8 4">
@@ -74,7 +112,7 @@
                 <!--Don't show again checkbox-->
                 <CheckBox Grid.Row="2" IsChecked="False" HorizontalAlignment="Right"
                           Style="{StaticResource MaterialDesignLightCheckBox}"
-                          Content="Không hiện hộp thoại này khi khởi động." 
+                          Content="Don't show this again." 
                           Margin="10"/>
                 <!--Don't show again checkbox-->
 
@@ -83,9 +121,9 @@
         <!--Suggest-->
 
         <!--Loading99%-->
-        <ProgressBar Grid.Row="1" Height="10"
-                     Value="{Binding ProgressVal}"/>
-        
+        <ProgressBar Grid.Row="2" Value="{Binding ProgressVal}" Height="5"
+                     materialDesign:TransitionAssist.DisableTransitions="True" />
+
         <!--Loading99%/-->
 
     </Grid>
