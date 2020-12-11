@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using WeSplit.Helpers;
 
 namespace WeSplit.ViewModel
 {
@@ -19,6 +20,7 @@ namespace WeSplit.ViewModel
         public ICommand MouseMoveWindowCmd { get; set; }
         #endregion
 
+        #region Constructor
         public ControlBarViewModel()
         {
             #region ControlBar handlers
@@ -26,7 +28,7 @@ namespace WeSplit.ViewModel
             CloseWindowCmd = new RelayCommand<UserControl>(
                                     (p) => { return p == null ? false : true; },
                                     (p) => {
-                                        FrameworkElement window = GetParentWindow(p);
+                                        FrameworkElement window = WindowHandler.GetParentWindow(p);
                                         var w = (window as Window);
                                         if (w != null)
                                         {
@@ -37,7 +39,7 @@ namespace WeSplit.ViewModel
             RestoreWindowCmd = new RelayCommand<UserControl>(
                                     (p) => { return p == null ? false : true; },
                                     (p) => {
-                                        FrameworkElement window = GetParentWindow(p);
+                                        FrameworkElement window = WindowHandler.GetParentWindow(p);
                                         var w = (window as Window);
                                         if (w != null)
                                         {
@@ -56,7 +58,7 @@ namespace WeSplit.ViewModel
             MinimizeWindowCmd = new RelayCommand<UserControl>(
                                     (p) => { return p == null ? false : true; },
                                     (p) => {
-                                        FrameworkElement window = GetParentWindow(p);
+                                        FrameworkElement window = WindowHandler.GetParentWindow(p);
                                         var w = (window as Window);
                                         if (w != null)
                                         {
@@ -67,31 +69,16 @@ namespace WeSplit.ViewModel
             MouseMoveWindowCmd = new RelayCommand<UserControl>(
                                     (p) => { return p == null ? false : true; },
                                     (p) => {
-                                        FrameworkElement window = GetParentWindow(p);
+                                        FrameworkElement window = WindowHandler.GetParentWindow(p);
                                         var w = (window as Window);
                                         w.DragMove();
                                     });
             #endregion
 
 
-
-
         }
 
-        /// <summary>
-        /// Get real parent of UserControl p
-        /// </summary>
-        /// <param name="p">UserControl</param>
-        /// <returns>real parent of p</returns>
-        FrameworkElement GetParentWindow(UserControl p)
-        {
-            FrameworkElement parent = p;
-            
-            while (parent.Parent != null){
-                parent = parent.Parent as FrameworkElement;
-            }
+        #endregion
 
-            return parent;
-        }
     }
 }

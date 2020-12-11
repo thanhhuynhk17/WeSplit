@@ -13,5 +13,6 @@ namespace WeSplit
     /// </summary>
     public partial class App : Application
     {
+
     }
 }

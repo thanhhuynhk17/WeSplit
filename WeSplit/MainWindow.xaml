@@ -6,8 +6,11 @@
         
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:userControl="clr-namespace:WeSplit.UserControlWeSplit"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+
         xmlns:local="clr-namespace:WeSplit"
         mc:Ignorable="d"
+        
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -15,16 +18,20 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        
+
         Name="mainWindow"
+        DataContext="{StaticResource MainViewModel}"
         ResizeMode="NoResize"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         Title="Main Window Title" Height="600" Width="1000">
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -32,6 +39,36 @@
             <userControl:ControlBarUC Tag="{Binding Title, ElementName=mainWindow}"/>
             <!--Control Bar/-->
         </Grid>
+        <Grid Grid.Row="1">
+            <!--App Menu-->
+            <StackPanel Orientation="Horizontal" Margin="4">
+                <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}"
+                             Margin="4" IsChecked="True" Content="Trang chủ" />
+                <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}"
+                             Margin="4" IsChecked="False" Content="Tạo mới chuyến đi" />
+                <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}"
+                             Margin="4" IsChecked="False" Content="Về chúng tôi"/>
+            </StackPanel>
+            <!--App Menu/-->
+        </Grid>
+
+        <!--Filter Menu-->
+        <Grid Grid.Row="2" Margin="4">
+            <ListBox Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineListBox}"
+                     x:Name="RadioButtonGroupChoiceChipPrimaryOutline">
+                
+                <ListBoxItem IsSelected="True" Content="Toàn bộ chuyến đi"/>
+                <ListBoxItem Content="Đã từng đi"/>
+                <ListBoxItem Content="Sắp đi"/>
+
+            </ListBox>
+        </Grid>
+        <!--Filter Menu/-->
         
+        <!--Content-->
+        <userControl:HomeContentUC Grid.Row="3">
+            
+        </userControl:HomeContentUC>
+        <!--Content/-->
     </Grid>
 </Window>
