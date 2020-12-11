@@ -2,3 +2,5 @@
 packages/
 /WeSplit/bin
 /WeSplit/obj
+/WeSplit/bin/Debug/
+/WeSplit/obj/Debug/
