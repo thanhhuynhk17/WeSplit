@@ -22,13 +22,14 @@
         <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth5"
                                  Padding="10" Margin="10">
 
-            <StackPanel Width="800" Height="450" Orientation="Horizontal">
-                <StackPanel Width="400">
+            <StackPanel Width="770" Height="430">
+                <StackPanel Width="770" Height="370" Orientation="Horizontal">
+                    <StackPanel Width="375">
                     <TextBlock Margin="0 5 0 0" Text="Tên chuyến đi"></TextBlock>
                     <TextBox Margin="0 0 0 15" materialDesign:HintAssist.Hint="Tên chuyến đi" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBlock Margin="0 5 0 0" Text="Điểm đến"></TextBlock>
                     <StackPanel>
-                        <ComboBox ItemsSource="{Binding ListPlace}" materialDesign:ComboBoxAssist.ShowSelectedItem="{Binding ElementName=PlaceSelected}"
+                        <ComboBox materialDesign:HintAssist.Hint="Điểm đến" ItemsSource="{Binding ListPlace}" materialDesign:ComboBoxAssist.ShowSelectedItem="{Binding ElementName=PlaceSelected}"
                             Margin="0 10 0 15" Width="200" HorizontalAlignment="Left" VerticalAlignment="Bottom" >
                         </ComboBox>
                     </StackPanel>
@@ -39,24 +40,71 @@
                             Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0 15 0 0">
-                        <CheckBox x:Name="HireCarCheckbox" Margin="0 0 10 0">
-                           Thuê xe
-                        </CheckBox>
-                        <CheckBox x:Name="HireRoomCheckbox" Margin="0 0 10 0">
-                            Thuê phòng
-                        </CheckBox>
-                        <CheckBox x:Name="HireFlaneCheckbox" Margin="0 0 10 0">
-                            Máy bay
-                        </CheckBox>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox Width="70" Margin="0 0 0 15" materialDesign:HintAssist.Hint="Chi phí" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Width="70" Margin="0 0 0 15" materialDesign:HintAssist.Hint="Chi phí" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox  Margin="0 0 0 15" materialDesign:HintAssist.Hint="Chi phí" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <StackPanel Margin="0 0 15 0">
+                            <CheckBox x:Name="HireCarCheckbox" Margin="0 0 15 0">
+                                Thuê xe
+                            </CheckBox>
+                            <TextBox Width="70" Margin="0 0 0 15" materialDesign:HintAssist.Hint="Chi phí" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        </StackPanel>
+                        <StackPanel  Margin="0 0 15 0">
+                            <CheckBox x:Name="HireRoomCheckbox" Margin="0 0 15 0">
+                                Thuê phòng
+                            </CheckBox>
+                            <TextBox Width="70" Margin="0 0 0 15" materialDesign:HintAssist.Hint="Chi phí" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        </StackPanel>
+                        <StackPanel  Margin="0 0 15 0">
+                            <CheckBox x:Name="HirePlaneCheckbox" Margin="0 0 15 0">
+                                Máy bay
+                            </CheckBox>
+                            <TextBox Width="70" Margin="0 0 0 15" materialDesign:HintAssist.Hint="Chi phí" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        </StackPanel>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal"></StackPanel>
                 </StackPanel>
-                <StackPanel Width="400"></StackPanel>
+                    <StackPanel Margin="20 0 0 0" Width="375">
+                        <TextBlock Margin="0 5 0 0" Text="Nơi dừng chân"></TextBlock>
+                        <TextBox Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" Margin="0 15 0 0" VerticalAlignment="Top"
+                        Height="50" Width="375" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"
+                        materialDesign:HintAssist.Hint="Mô tả" />
+                        <StackPanel Margin="0 15 0 0">
+                            <ComboBox materialDesign:HintAssist.Hint="Tỉnh thành" ItemsSource="{Binding ListPlace}" materialDesign:ComboBoxAssist.ShowSelectedItem="{Binding ElementName=PlaceSelected}"
+                            Margin="0 10 0 15" Width="200" HorizontalAlignment="Left" VerticalAlignment="Bottom" >
+                            </ComboBox>
+                        </StackPanel>
+                        <CheckBox x:Name="MaterialDesignOutlinedTextFieldTextBoxEnabledComboBox" 
+                             IsChecked="False" Margin="0 10 0 0">
+                            Chi phí
+                        </CheckBox>
+                        <TextBox materialDesign:HintAssist.Hint="Tiền" 
+                             Margin="0 10 0 0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <Button Style="{StaticResource MaterialDesignRaisedButton}" Width="100"
+                        Margin="0 15 0 0" ToolTip="Resource name: MaterialDesignRaisedButton">
+                            Thêm
+                        </Button>
+                        <!--Binding list items-->
+                        <ListView HorizontalAlignment="Left" Margin="0 5 0 0" ItemsSource="{Binding ListRoute}">
+                            <ListView.View>
+                                <GridView AllowsColumnReorder="False">
+                                    <GridViewColumn DisplayMemberBinding="{Binding PlaceStart}"
+                                        Header="Nơi dừng chân" />
+                                    <GridViewColumn DisplayMemberBinding="{Binding Description}"
+                                        Header="Mô tả" />
+                                    <GridViewColumn DisplayMemberBinding="{Binding Cost}"
+                                        Header="Chi phí" />
+                                    <GridViewColumn DisplayMemberBinding="{Binding Province}"
+                                        Header="Địa điểm" />
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <!--Binding list items/-->
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Height="30" Margin="0 10 0 0">
+                    <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        Width="120" ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
+                        Hoàn thành
+                    </Button>
+                </StackPanel>
             </StackPanel>
         </materialDesign:Card>
     </Grid>
