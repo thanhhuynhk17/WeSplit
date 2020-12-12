@@ -4,14 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4e12e028807c4e938b7c5d8622b66d15" Name="Diagram1">
+      <Diagram DiagramId="c634da29801349f1910b4897c2129c31" Name="Diagram1">
         <EntityTypeShape EntityType="WeSplitModel.journey" Width="1.5" PointX="5.25" PointY="2.375" IsExpanded="true" />
         <EntityTypeShape EntityType="WeSplitModel.journey_member" Width="1.5" PointX="7.5" PointY="2.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WeSplitModel.member" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="WeSplitModel.place" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeSplitModel.place" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
         <EntityTypeShape EntityType="WeSplitModel.province" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
         <EntityTypeShape EntityType="WeSplitModel.route" Width="1.5" PointX="10.5" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="WeSplitModel.sysdiagram" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
         <AssociationConnector Association="WeSplitModel.FK_Journey_MemberJourney" ManuallyRouted="false" />
         <AssociationConnector Association="WeSplitModel.FK_JourneyPlace" ManuallyRouted="false" />
         <AssociationConnector Association="WeSplitModel.FK_RouteJourney" ManuallyRouted="false" />

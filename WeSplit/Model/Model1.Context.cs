@@ -13,10 +13,10 @@ namespace WeSplit.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class WeSplitEntities1 : DbContext
+    public partial class WeSplitEntities3 : DbContext
     {
-        public WeSplitEntities1()
-            : base("name=WeSplitEntities1")
+        public WeSplitEntities3()
+            : base("name=WeSplitEntities3")
         {
         }
     
@@ -31,6 +31,5 @@ namespace WeSplit.Model
         public virtual DbSet<place> places { get; set; }
         public virtual DbSet<province> provinces { get; set; }
         public virtual DbSet<route> routes { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }
