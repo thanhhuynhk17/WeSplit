@@ -12,13 +12,19 @@ namespace WeSplit.ViewModel
     public class MainViewModel: BaseViewModel
     {
         public ICommand AddJourneyCommand { get; set; }
-        
+        public ICommand ShowAddJourneyView { get; set; }
+        private string _Name;
+        public string Name { get => _Name; set { _Name = value; OnPropertyChanged(); } }
         public MainViewModel()
         {
+            ShowAddJourneyView = new RelayCommand<object>((p) => { return true; }, (p) =>
+            {
+                //handle logic here
+            });
+
             AddJourneyCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
-                SplashScreenWindow splash = new SplashScreenWindow();
-                splash.ShowDialog();
+                MessageBox.Show(Name);
             });
         }
     }
