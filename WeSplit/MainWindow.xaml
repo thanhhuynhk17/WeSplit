@@ -30,7 +30,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -52,21 +51,9 @@
             <!--App Menu/-->
         </Grid>
 
-        <!--Filter Menu-->
-        <Grid Grid.Row="2" Margin="4">
-            <ListBox Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineListBox}"
-                     x:Name="RadioButtonGroupChoiceChipPrimaryOutline">
-                
-                <ListBoxItem IsSelected="True" Content="Toàn bộ chuyến đi"/>
-                <ListBoxItem Content="Đã từng đi"/>
-                <ListBoxItem Content="Sắp đi"/>
-
-            </ListBox>
-        </Grid>
-        <!--Filter Menu/-->
         
         <!--Content-->
-        <userControl:HomeContentUC Grid.Row="3">
+        <userControl:HomeContentUC Grid.Row="2">
             
         </userControl:HomeContentUC>
         <!--Content/-->
