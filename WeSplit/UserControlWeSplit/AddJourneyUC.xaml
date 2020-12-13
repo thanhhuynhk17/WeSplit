@@ -24,11 +24,12 @@
             <StackPanel Width="980" Height="500">
                 <StackPanel Width="980" Height="460" Orientation="Horizontal">
                     <StackPanel Width="480" Margin="10 0 0 0">
+                        
                         <TextBlock HorizontalAlignment="Center" Margin="0 5 0 0" Text="Chuyến đi"></TextBlock>
-                        <TextBlock Margin="0 15 0 0" Text="Tên chuyến đi"></TextBlock>
+                        <TextBlock Margin="0 20 0 0" Text="Tên chuyến đi"></TextBlock>
                         <TextBox Margin="0 15 0 0" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                                  materialDesign:HintAssist.Hint="Tên chuyến đi" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBlock Margin="0 15 0 0" Text="Điểm đến"></TextBlock>
+                        <TextBlock Margin="0 20 0 0" Text="Điểm đến"></TextBlock>
                             <StackPanel Margin="0 15 0 0">
                                 <ComboBox materialDesign:HintAssist.Hint="Điểm đến" DisplayMemberPath="name" ItemsSource="{Binding ListPlace}" SelectedItem="{Binding SelectedPlace, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                 Width="200" HorizontalAlignment="Left" VerticalAlignment="Bottom" >
@@ -46,24 +47,24 @@
                             </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
                             <StackPanel Width="163">
-                                <CheckBox IsChecked="{Binding isHiringCar}" x:Name="HireCarCheckbox">
+                                <CheckBox IsChecked="{Binding IsHiringCar}" x:Name="HireCarCheckbox">
                                     Thuê xe
                                 </CheckBox>
-                                    <TextBox HorizontalAlignment="Left" Width="70" Margin="0 0 0 15" Text="{Binding HireCarCost, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                                <TextBox IsEnabled="{Binding IsHiringCar}" HorizontalAlignment="Left" Width="70" Margin="0 0 0 15" Text="{Binding HireCarCost, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                                          materialDesign:HintAssist.Hint="Chi phí" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                             </StackPanel>
                             <StackPanel Width="163">
-                                <CheckBox IsChecked="{Binding isHiringRoom}" x:Name="HireRoomCheckbox" Margin="0 0 15 0">
+                                <CheckBox IsChecked="{Binding IsHiringRoom}" x:Name="HireRoomCheckbox" Margin="0 0 15 0">
                                     Thuê phòng
                                 </CheckBox>
-                                    <TextBox HorizontalAlignment="Left"  Width="70" Margin="0 0 0 15" Text="{Binding HireRoomCost, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                <TextBox IsEnabled="{Binding IsHiringRoom}" HorizontalAlignment="Left"  Width="70" Margin="0 0 0 15" Text="{Binding HireRoomCost, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                          materialDesign:HintAssist.Hint="Chi phí" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                             </StackPanel>
                             <StackPanel Width="163">
-                                <CheckBox IsChecked="{Binding isBuyPlaneTicket}" x:Name="PlaneTicketCheckbox" Margin="0 0 15 0">
+                                <CheckBox IsChecked="{Binding IsBuyPlaneTicket}" x:Name="PlaneTicketCheckbox" Margin="0 0 15 0">
                                     Máy bay
                                 </CheckBox>
-                                    <TextBox HorizontalAlignment="Left"  Width="70" Margin="0 0 0 15" Text="{Binding PlaneTicketCost, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                <TextBox IsEnabled="{Binding IsBuyPlaneTicket}" HorizontalAlignment="Left"  Width="70" Margin="0 0 0 15" Text="{Binding PlaneTicketCost, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                          materialDesign:HintAssist.Hint="Chi phí" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                             </StackPanel>
                         </StackPanel>

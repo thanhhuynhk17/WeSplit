@@ -58,6 +58,15 @@ namespace WeSplit.ViewModel
         
         private DateTime _EndDate;
         public DateTime EndDate { get => _EndDate; set { _EndDate = value; OnPropertyChanged(); } }
+
+        private Boolean _IsHiringCar;
+        public Boolean IsHiringCar { get => _IsHiringCar; set { _IsHiringCar = value; OnPropertyChanged(); } }
+
+        private Boolean _IsHiringRoom;
+        public Boolean IsHiringRoom { get => _IsHiringRoom; set { _IsHiringRoom = value; OnPropertyChanged(); } }
+
+        private Boolean _IsBuyPlaneTicket;
+        public Boolean IsBuyPlaneTicket { get => _IsBuyPlaneTicket; set { _IsBuyPlaneTicket = value; OnPropertyChanged(); } }
         public MainViewModel()
         {
             ListPlace = new ObservableCollection<Model.place>(DataProvider.Ins.DB.places);
