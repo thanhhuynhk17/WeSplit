@@ -15,8 +15,8 @@ namespace WeSplit.Model
     public partial class journey_member
     {
         public int id { get; set; }
-        public int journey_id { get; set; }
-        public int member_id { get; set; }
+        public Nullable<int> journey_id { get; set; }
+        public Nullable<int> member_id { get; set; }
         public Nullable<double> journey_member_money { get; set; }
     
         public virtual journey journey { get; set; }

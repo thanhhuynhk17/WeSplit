@@ -23,11 +23,11 @@ namespace WeSplit.Model
     
         public int id { get; set; }
         public string name { get; set; }
-        public int end_place { get; set; }
+        public Nullable<int> end_place { get; set; }
         public Nullable<int> status { get; set; }
         public System.DateTime date_start { get; set; }
         public Nullable<System.DateTime> date_end { get; set; }
-        public double total_cost { get; set; }
+        public Nullable<double> total_cost { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<journey_member> journey_member { get; set; }

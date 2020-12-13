@@ -5,58 +5,117 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WeSplit.UserControlWeSplit"
              
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-            TextElement.FontWeight="Regular"
-            TextElement.FontSize="13"
-            TextOptions.TextFormattingMode="Ideal"
-            TextOptions.TextRenderingMode="Auto"
-            Background="{DynamicResource MaterialDesignPaper}"
-            FontFamily="{DynamicResource MaterialDesignFont}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
              
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="1000">
     <Grid>
-        <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth5"
-                                 Padding="10" Margin="10">
+        <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth5">
 
-            <StackPanel Width="800" Height="450" Orientation="Horizontal">
-                <StackPanel Width="400">
-                    <TextBlock Margin="0 5 0 0" Text="Tên chuyến đi"></TextBlock>
-                    <TextBox Margin="0 0 0 15" materialDesign:HintAssist.Hint="Tên chuyến đi" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBlock Margin="0 5 0 0" Text="Điểm đến"></TextBlock>
-                    <StackPanel>
-                        <ComboBox ItemsSource="{Binding ListPlace}" materialDesign:ComboBoxAssist.ShowSelectedItem="{Binding ElementName=PlaceSelected}"
-                            Margin="0 10 0 15" Width="200" HorizontalAlignment="Left" VerticalAlignment="Bottom" >
+            <StackPanel Width="980" Height="500">
+                <StackPanel Width="980" Height="460" Orientation="Horizontal">
+                    <StackPanel Width="480" Margin="10 0 0 0">
+                        
+                        <TextBlock HorizontalAlignment="Center" Margin="0 5 0 0" Text="Chuyến đi"></TextBlock>
+                        <TextBlock Margin="0 20 0 0" Text="Tên chuyến đi"></TextBlock>
+                        <TextBox Margin="0 15 0 0" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                                 materialDesign:HintAssist.Hint="Tên chuyến đi" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBlock Margin="0 20 0 0" Text="Điểm đến"></TextBlock>
+                            <StackPanel Margin="0 15 0 0">
+                                <ComboBox materialDesign:HintAssist.Hint="Điểm đến" DisplayMemberPath="name" ItemsSource="{Binding ListPlace}" SelectedItem="{Binding SelectedPlace, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                Width="200" HorizontalAlignment="Left" VerticalAlignment="Bottom" >
+                            </ComboBox>
+                        </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Width="245">
+                                    <DatePicker HorizontalAlignment="Left" Margin="0 15 80 0" SelectedDate="{Binding StartDate}"
+                                Width="100" materialDesign:HintAssist.Hint="Ngày đi" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                                </StackPanel>
+                                <StackPanel Width="245">
+                                    <DatePicker HorizontalAlignment="Left" Margin="0 15 80 0" SelectedDate="{Binding EndDate}"
+                                         Width="100" materialDesign:HintAssist.Hint="Ngày về" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                                </StackPanel>
+                            </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                            <StackPanel Width="163">
+                                <CheckBox IsChecked="{Binding IsHiringCar}" x:Name="HireCarCheckbox">
+                                    Thuê xe
+                                </CheckBox>
+                                <TextBox IsEnabled="{Binding IsHiringCar}" HorizontalAlignment="Left" Width="70" Margin="0 0 0 15" Text="{Binding HireCarCost, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                                         materialDesign:HintAssist.Hint="Chi phí" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                            </StackPanel>
+                            <StackPanel Width="163">
+                                <CheckBox IsChecked="{Binding IsHiringRoom}" x:Name="HireRoomCheckbox" Margin="0 0 15 0">
+                                    Thuê phòng
+                                </CheckBox>
+                                <TextBox IsEnabled="{Binding IsHiringRoom}" HorizontalAlignment="Left"  Width="70" Margin="0 0 0 15" Text="{Binding HireRoomCost, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                         materialDesign:HintAssist.Hint="Chi phí" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                            </StackPanel>
+                            <StackPanel Width="163">
+                                <CheckBox IsChecked="{Binding IsBuyPlaneTicket}" x:Name="PlaneTicketCheckbox" Margin="0 0 15 0">
+                                    Máy bay
+                                </CheckBox>
+                                <TextBox IsEnabled="{Binding IsBuyPlaneTicket}" HorizontalAlignment="Left"  Width="70" Margin="0 0 0 15" Text="{Binding PlaneTicketCost, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                         materialDesign:HintAssist.Hint="Chi phí" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"></StackPanel>
+                </StackPanel>
+                <StackPanel Margin="20 0 10 0" Width="480">
+                    <TextBlock HorizontalAlignment="Center" Margin="0 5 0 0" Text="Lộ trình"></TextBlock>
+                    <TextBox Text="{Binding EndPlace, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                        materialDesign:HintAssist.Hint="Nơi dừng chân" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                        HorizontalAlignment="Left" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" Margin="0 15 0 0" VerticalAlignment="Top"
+                    Height="40" Width="470" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"
+                    materialDesign:HintAssist.Hint="Mô tả" />
+                    <StackPanel Margin="0 10 0 0">
+                        <ComboBox materialDesign:HintAssist.Hint="Tỉnh thành" DisplayMemberPath="name" ItemsSource="{Binding ListProvince}" SelectedItem="{Binding SelectedProvince}"
+                        Margin="0 10 0 10" Width="200" HorizontalAlignment="Left" VerticalAlignment="Bottom" >
                         </ComboBox>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <DatePicker Margin="0 0 80 0" Width="100" materialDesign:HintAssist.Hint="Ngày đi"
-                            Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-                        <DatePicker Width="100" materialDesign:HintAssist.Hint="Ngày về"
-                            Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0 15 0 0">
-                        <CheckBox x:Name="HireCarCheckbox" Margin="0 0 10 0">
-                           Thuê xe
-                        </CheckBox>
-                        <CheckBox x:Name="HireRoomCheckbox" Margin="0 0 10 0">
-                            Thuê phòng
-                        </CheckBox>
-                        <CheckBox x:Name="HireFlaneCheckbox" Margin="0 0 10 0">
-                            Máy bay
-                        </CheckBox>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox Width="70" Margin="0 0 0 15" materialDesign:HintAssist.Hint="Chi phí" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Width="70" Margin="0 0 0 15" materialDesign:HintAssist.Hint="Chi phí" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox  Margin="0 0 0 15" materialDesign:HintAssist.Hint="Chi phí" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal"></StackPanel>
+                        
+                    <TextBox Text="{Binding RouteCost, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                        materialDesign:HintAssist.Hint="Tiền" Margin="0 5 0 0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <Button Command="{Binding AddJRouteCommand}" Style="{StaticResource MaterialDesignRaisedButton}" Width="100"
+                    Margin="0 7 0 0" ToolTip="Resource name: MaterialDesignRaisedButton">
+                        Thêm
+                    </Button>
+                    <!--Binding list items-->
+                    <ScrollViewer Margin="0 0 0 10">
+                        <ListView HorizontalAlignment="Left" ItemsSource="{Binding ListRoute, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                            <ListView.View>
+                                <GridView AllowsColumnReorder="False">
+                                    <GridViewColumn DisplayMemberBinding="{Binding place_start}"
+                                    Header="Nơi dừng chân" />
+                                    <GridViewColumn DisplayMemberBinding="{Binding description}"
+                                    Header="Mô tả" />
+                                    <GridViewColumn DisplayMemberBinding="{Binding costs}"
+                                    Header="Chi phí" />
+                                    <GridViewColumn DisplayMemberBinding="{Binding province_id}"
+                                    Header="Địa điểm" />
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </ScrollViewer>
+                    <!--Binding list items/-->
                 </StackPanel>
-                <StackPanel Width="400"></StackPanel>
+                </StackPanel>
+                <StackPanel Height="30" Margin="0 0 0 10">
+                    <Button Command="{Binding AddJourneyCommand}" Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                         Height="30" Width="120" ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
+                        Hoàn thành
+                    </Button>
+                </StackPanel>
             </StackPanel>
         </materialDesign:Card>
     </Grid>

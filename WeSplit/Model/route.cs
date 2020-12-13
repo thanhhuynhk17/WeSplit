@@ -17,9 +17,9 @@ namespace WeSplit.Model
         public int id { get; set; }
         public string place_start { get; set; }
         public string description { get; set; }
-        public int province_id { get; set; }
+        public Nullable<int> province_id { get; set; }
         public Nullable<double> costs { get; set; }
-        public int journey_id { get; set; }
+        public Nullable<int> journey_id { get; set; }
     
         public virtual journey journey { get; set; }
         public virtual province province { get; set; }
