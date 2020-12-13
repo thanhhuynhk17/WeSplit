@@ -11,19 +11,19 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="end_place" Type="int" Nullable="false" />
+          <Property Name="end_place" Type="int" />
           <Property Name="status" Type="int" />
           <Property Name="date_start" Type="date" Nullable="false" />
           <Property Name="date_end" Type="date" />
-          <Property Name="total_cost" Type="float" Nullable="false" />
+          <Property Name="total_cost" Type="float" />
         </EntityType>
         <EntityType Name="journey_member">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="journey_id" Type="int" Nullable="false" />
-          <Property Name="member_id" Type="int" Nullable="false" />
+          <Property Name="journey_id" Type="int" />
+          <Property Name="member_id" Type="int" />
           <Property Name="journey_member_money" Type="float" />
         </EntityType>
         <EntityType Name="member">
@@ -39,6 +39,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="255" />
           <Property Name="image" Type="nvarchar" MaxLength="100" />
           <Property Name="description" Type="text" />
           <Property Name="address" Type="nvarchar" MaxLength="255" />
@@ -59,22 +60,12 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="place_start" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="description" Type="text" />
-          <Property Name="province_id" Type="int" Nullable="false" />
+          <Property Name="province_id" Type="int" />
           <Property Name="costs" Type="float" />
-          <Property Name="journey_id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
+          <Property Name="journey_id" Type="int" />
         </EntityType>
         <Association Name="FK_Journey_MemberJourney">
-          <End Role="journey" Type="Self.journey" Multiplicity="1" />
+          <End Role="journey" Type="Self.journey" Multiplicity="0..1" />
           <End Role="journey_member" Type="Self.journey_member" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="journey">
@@ -86,7 +77,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Journey_MemberMember">
-          <End Role="member" Type="Self.member" Multiplicity="1" />
+          <End Role="member" Type="Self.member" Multiplicity="0..1" />
           <End Role="journey_member" Type="Self.journey_member" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="member">
@@ -98,7 +89,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_JourneyPlace">
-          <End Role="place" Type="Self.place" Multiplicity="1" />
+          <End Role="place" Type="Self.place" Multiplicity="0..1" />
           <End Role="journey" Type="Self.journey" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="place">
@@ -122,7 +113,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RouteJourney">
-          <End Role="journey" Type="Self.journey" Multiplicity="1" />
+          <End Role="journey" Type="Self.journey" Multiplicity="0..1" />
           <End Role="route" Type="Self.route" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="journey">
@@ -134,7 +125,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RouteProvince">
-          <End Role="province" Type="Self.province" Multiplicity="1" />
+          <End Role="province" Type="Self.province" Multiplicity="0..1" />
           <End Role="route" Type="Self.route" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="province">
@@ -152,7 +143,6 @@
           <EntitySet Name="place" EntityType="Self.place" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="province" EntityType="Self.province" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="route" EntityType="Self.route" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Journey_MemberJourney" Association="Self.FK_Journey_MemberJourney">
             <End Role="journey" EntitySet="journey" />
             <End Role="journey_member" EntitySet="journey_member" />
@@ -189,11 +179,11 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="end_place" Type="Int32" Nullable="false" />
+          <Property Name="end_place" Type="Int32" />
           <Property Name="status" Type="Int32" />
           <Property Name="date_start" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="date_end" Type="DateTime" Precision="0" />
-          <Property Name="total_cost" Type="Double" Nullable="false" />
+          <Property Name="total_cost" Type="Double" />
           <NavigationProperty Name="journey_member" Relationship="Self.FK_Journey_MemberJourney" FromRole="journey" ToRole="journey_member" />
           <NavigationProperty Name="place" Relationship="Self.FK_JourneyPlace" FromRole="journey" ToRole="place" />
           <NavigationProperty Name="routes" Relationship="Self.FK_RouteJourney" FromRole="journey" ToRole="route" />
@@ -203,8 +193,8 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="journey_id" Type="Int32" Nullable="false" />
-          <Property Name="member_id" Type="Int32" Nullable="false" />
+          <Property Name="journey_id" Type="Int32" />
+          <Property Name="member_id" Type="Int32" />
           <Property Name="journey_member_money" Type="Double" />
           <NavigationProperty Name="journey" Relationship="Self.FK_Journey_MemberJourney" FromRole="journey_member" ToRole="journey" />
           <NavigationProperty Name="member" Relationship="Self.FK_Journey_MemberMember" FromRole="journey_member" ToRole="member" />
@@ -223,6 +213,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
@@ -247,24 +238,14 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="place_start" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="province_id" Type="Int32" Nullable="false" />
+          <Property Name="province_id" Type="Int32" />
           <Property Name="costs" Type="Double" />
-          <Property Name="journey_id" Type="Int32" Nullable="false" />
+          <Property Name="journey_id" Type="Int32" />
           <NavigationProperty Name="journey" Relationship="Self.FK_RouteJourney" FromRole="route" ToRole="journey" />
           <NavigationProperty Name="province" Relationship="Self.FK_RouteProvince" FromRole="route" ToRole="province" />
         </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
         <Association Name="FK_Journey_MemberJourney">
-          <End Role="journey" Type="Self.journey" Multiplicity="1" />
+          <End Role="journey" Type="Self.journey" Multiplicity="0..1" />
           <End Role="journey_member" Type="Self.journey_member" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="journey">
@@ -276,7 +257,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_JourneyPlace">
-          <End Role="place" Type="Self.place" Multiplicity="1" />
+          <End Role="place" Type="Self.place" Multiplicity="0..1" />
           <End Role="journey" Type="Self.journey" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="place">
@@ -288,7 +269,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RouteJourney">
-          <End Role="journey" Type="Self.journey" Multiplicity="1" />
+          <End Role="journey" Type="Self.journey" Multiplicity="0..1" />
           <End Role="route" Type="Self.route" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="journey">
@@ -300,7 +281,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Journey_MemberMember">
-          <End Role="member" Type="Self.member" Multiplicity="1" />
+          <End Role="member" Type="Self.member" Multiplicity="0..1" />
           <End Role="journey_member" Type="Self.journey_member" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="member">
@@ -324,7 +305,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RouteProvince">
-          <End Role="province" Type="Self.province" Multiplicity="1" />
+          <End Role="province" Type="Self.province" Multiplicity="0..1" />
           <End Role="route" Type="Self.route" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="province">
@@ -335,14 +316,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="WeSplitEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="WeSplitEntities3" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="journeys" EntityType="Self.journey" />
           <EntitySet Name="journey_member" EntityType="Self.journey_member" />
           <EntitySet Name="members" EntityType="Self.member" />
           <EntitySet Name="places" EntityType="Self.place" />
           <EntitySet Name="provinces" EntityType="Self.province" />
           <EntitySet Name="routes" EntityType="Self.route" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <AssociationSet Name="FK_Journey_MemberJourney" Association="Self.FK_Journey_MemberJourney">
             <End Role="journey" EntitySet="journeys" />
             <End Role="journey_member" EntitySet="journey_member" />
@@ -373,7 +353,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="WeSplitModelStoreContainer" CdmEntityContainer="WeSplitEntities1">
+        <EntityContainerMapping StorageEntityContainer="WeSplitModelStoreContainer" CdmEntityContainer="WeSplitEntities3">
           <EntitySetMapping Name="journeys">
             <EntityTypeMapping TypeName="WeSplitModel.journey">
               <MappingFragment StoreEntitySet="journey">
@@ -410,6 +390,7 @@
             <EntityTypeMapping TypeName="WeSplitModel.place">
               <MappingFragment StoreEntitySet="place">
                 <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="image" ColumnName="image" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="address" ColumnName="address" />
@@ -435,17 +416,6 @@
                 <ScalarProperty Name="province_id" ColumnName="province_id" />
                 <ScalarProperty Name="costs" ColumnName="costs" />
                 <ScalarProperty Name="journey_id" ColumnName="journey_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="WeSplitModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
