@@ -67,10 +67,6 @@
         
         <!--Content-->
         <userControl:AddJourneyUC Grid.Row="3">
-        
-        <!--Content-->
-        <userControl:HomeContentUC Grid.Row="2">
-            
         </userControl:AddJourneyUC>
         <!--Content/-->
     </Grid>

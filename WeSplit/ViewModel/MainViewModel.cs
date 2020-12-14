@@ -73,7 +73,7 @@ namespace WeSplit.ViewModel
             ListProvince = new ObservableCollection<Model.province>(DataProvider.Ins.DB.provinces);
             ListRoute = new ObservableCollection<route>();
             SelectedPlace = ListPlace != null ? ListPlace.First() : null;
-            SelectedProvince = ListProvince != null ? ListProvince.First() : null;
+            SelectedProvince = ListProvince.Count != 0 ? ListProvince.First() : null;
             StartDate = EndDate = Today;
             ShowAddJourneyView = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
