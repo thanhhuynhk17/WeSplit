@@ -19,7 +19,7 @@ namespace WeSplit.ViewModel
         public ICommand AddJRouteCommand { get; set; }
         public ICommand ListJourneyCommand { get; set; }
         public ICommand ListJourneyGoneCommand { get; set; }
-        public ICommand ListJourneyNeverGone { get; set; }
+        public ICommand ListJourneyGoingToCommand { get; set; }
 
         private ObservableCollection<Model.journey> _ListJourney;
         public ObservableCollection<Model.journey> ListJourney { get => _ListJourney; set { _ListJourney = value; OnPropertyChanged(); } }
@@ -143,7 +143,7 @@ namespace WeSplit.ViewModel
                 ListJourney = new ObservableCollection<journey>(ListEndOfTrip);
             });
 
-            ListJourneyNeverGone = new RelayCommand<object>((p) => { return true; }, (p) =>
+            ListJourneyGoingToCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
                 var ListEndOfTrip = DataProvider.Ins.DB.journeys.Where(x => x.status == 2).ToList<journey>();
                 ListJourney = new ObservableCollection<journey>(ListEndOfTrip);
