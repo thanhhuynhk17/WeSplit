@@ -17,7 +17,9 @@ namespace WeSplit.ViewModel
         public ICommand AddJourneyCommand { get; set; }
         public ICommand ShowAddJourneyView { get; set; }
         public ICommand AddJRouteCommand { get; set; }
-        public ICommand RenderListJourney { get; set; }
+        public ICommand ListJourneyCommand { get; set; }
+        public ICommand ListJourneyGoneCommand { get; set; }
+        public ICommand ListJourneyNeverGone { get; set; }
 
         private ObservableCollection<Model.journey> _ListJourney;
         public ObservableCollection<Model.journey> ListJourney { get => _ListJourney; set { _ListJourney = value; OnPropertyChanged(); } }
@@ -107,7 +109,7 @@ namespace WeSplit.ViewModel
             }, (p) =>
             {
                 var total = _HireCarCost + _HireRoomCost + _PlaneTicketCost;
-                var journey = new journey() { name = Name, end_place = SelectedPlace.id, date_end = EndDate, date_start = StartDate, total_cost = total };
+                var journey = new journey() { name = Name, end_place = SelectedPlace.id, status=2, date_end = EndDate, date_start = StartDate, total_cost = total };
 
                 DataProvider.Ins.DB.journeys.Add(journey);
                 foreach(route RouteIns in ListRoute)
@@ -129,11 +131,24 @@ namespace WeSplit.ViewModel
                 ListRoute.Add(RouteIns);
             });
 
-            RenderListJourney = new RelayCommand<object>((p) =>{ return true; }, (p) =>
+            ListJourneyCommand = new RelayCommand<object>((p) =>{ return true; }, (p) =>
             {
-                var ListEndOfTrip = DataProvider.Ins.DB.journeys.Where(x => x.status == 1).ToList<journey>();
+                var ListEndOfTrip = DataProvider.Ins.DB.journeys.ToList<journey>();
                 ListJourney = new ObservableCollection<journey>(ListEndOfTrip);
             });
+
+            ListJourneyGoneCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+            {
+                var ListEndOfTrip = DataProvider.Ins.DB.journeys.Where(x=> x.status == 1).ToList<journey>();
+                ListJourney = new ObservableCollection<journey>(ListEndOfTrip);
+            });
+
+            ListJourneyNeverGone = new RelayCommand<object>((p) => { return true; }, (p) =>
+            {
+                var ListEndOfTrip = DataProvider.Ins.DB.journeys.Where(x => x.status == 2).ToList<journey>();
+                ListJourney = new ObservableCollection<journey>(ListEndOfTrip);
+            });
+
         }
     }
 }

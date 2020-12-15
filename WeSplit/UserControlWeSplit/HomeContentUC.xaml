@@ -20,14 +20,16 @@
         </Grid.RowDefinitions>
         <!--Filter Menu-->
         <Grid Grid.Row="0" Margin="4">
-            <ListBox Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineListBox}"
-                     x:Name="RadioButtonGroupChoiceChipPrimaryOutline">
-
-                <ListBoxItem IsSelected="True" Content="Toàn bộ chuyến đi"/>
-                <ListBoxItem  Content="Đã từng đi"/>
-                <ListBoxItem Content="Sắp đi"/>
-
-            </ListBox>
+            <materialDesign:ColorZone Mode="Dark">
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <RadioButton Command="{Binding ListJourneyCommand}" Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" 
+                             IsChecked="True" Content="Toàn bộ chuyến đi" />
+                    <RadioButton Command="{Binding ListJourneyGoneCommand}" Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" 
+                             IsChecked="True" Content="Đã từng đi" />
+                    <RadioButton Command="{Binding ListJourneyNeverGone}" Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" 
+                             IsChecked="True" Content="Sắp đi" />
+                </StackPanel>
+            </materialDesign:ColorZone>
         </Grid>
         <!--Filter Menu/-->
 
