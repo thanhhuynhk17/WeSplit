@@ -25,9 +25,9 @@
                     <RadioButton Command="{Binding ListJourneyCommand}" Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" 
                              IsChecked="True" Content="Toàn bộ chuyến đi" />
                     <RadioButton Command="{Binding ListJourneyGoneCommand}" Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" 
-                             IsChecked="True" Content="Đã từng đi" />
+                             IsChecked="False" Content="Đã từng đi" />
                     <RadioButton Command="{Binding ListJourneyNeverGone}" Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" 
-                             IsChecked="True" Content="Sắp đi" />
+                             IsChecked="False" Content="Sắp đi" />
                 </StackPanel>
             </materialDesign:ColorZone>
         </Grid>

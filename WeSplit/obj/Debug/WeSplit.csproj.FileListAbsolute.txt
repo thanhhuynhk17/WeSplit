@@ -116,3 +116,4 @@ C:\WPF\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\HomeContentUC.baml
 C:\WPF\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\AddJourneyUC.g.cs
 C:\WPF\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\AddJourneyUC.baml
 C:\WPF\WeSplit\WeSplit\obj\Debug\WeSplit_Content.g.cs
+C:\WPF\WeSplit\WeSplit\obj\Debug\WeSplit.csprojAssemblyReference.cache
