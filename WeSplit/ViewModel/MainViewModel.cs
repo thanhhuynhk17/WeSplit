@@ -31,6 +31,9 @@ namespace WeSplit.ViewModel
         private ObservableCollection<Model.route> _ListRoute;
         public ObservableCollection<Model.route> ListRoute { get => _ListRoute; set { _ListRoute = value; OnPropertyChanged(); } }
 
+        private ObservableCollection<Model.place> _ListEndPlace;
+        public ObservableCollection<Model.place> ListEndPlace { get => _ListEndPlace; set { _ListEndPlace = value; OnPropertyChanged(); } }
+
         private string _Name;
         public string Name { get => _Name; set { _Name = value; OnPropertyChanged(); } }
 

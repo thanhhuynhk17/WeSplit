@@ -41,7 +41,7 @@
                                         Header="Ngày khởi hành" />
                         <GridViewColumn DisplayMemberBinding="{Binding date_end, StringFormat='dd-MM-yyyy'}"
                                         Header="Ngày kết thúc" />
-                        <GridViewColumn DisplayMemberBinding="{Binding end_place}"
+                        <GridViewColumn DisplayMemberBinding="{Binding place.name}"
                                         Header="Địa điểm" />
                         <GridViewColumn Header="Thành viên">
                             <GridViewColumn.CellTemplate>
