@@ -17,6 +17,10 @@ namespace WeSplit.ViewModel
         public ICommand AddJourneyCommand { get; set; }
         public ICommand ShowAddJourneyView { get; set; }
         public ICommand AddJRouteCommand { get; set; }
+        public ICommand RenderListJourney { get; set; }
+
+        private ObservableCollection<Model.journey> _ListJourney;
+        public ObservableCollection<Model.journey> ListJourney { get => _ListJourney; set { _ListJourney = value; OnPropertyChanged(); } }
 
         private ObservableCollection<Model.place> _ListPlace;
         public ObservableCollection<Model.place> ListPlace { get => _ListPlace; set { _ListPlace = value; OnPropertyChanged(); } }
@@ -69,6 +73,7 @@ namespace WeSplit.ViewModel
         public Boolean IsBuyPlaneTicket { get => _IsBuyPlaneTicket; set { _IsBuyPlaneTicket = value; OnPropertyChanged(); } }
         public MainViewModel()
         {
+            ListJourney = new ObservableCollection<Model.journey>(DataProvider.Ins.DB.journeys);
             ListPlace = new ObservableCollection<Model.place>(DataProvider.Ins.DB.places);
             ListProvince = new ObservableCollection<Model.province>(DataProvider.Ins.DB.provinces);
             ListRoute = new ObservableCollection<route>();
@@ -119,6 +124,12 @@ namespace WeSplit.ViewModel
             {
                 var RouteIns = new route() { place_start = EndPlace, description = Description, province_id = SelectedProvince.id, costs = RouteCost };
                 ListRoute.Add(RouteIns);
+            });
+
+            RenderListJourney = new RelayCommand<object>((p) =>{ return true; }, (p) =>
+            {
+                var ListEndOfTrip = DataProvider.Ins.DB.journeys.Where(x => x.status == 1).ToList<journey>();
+                ListJourney = new ObservableCollection<journey>(ListEndOfTrip);
             });
         }
     }

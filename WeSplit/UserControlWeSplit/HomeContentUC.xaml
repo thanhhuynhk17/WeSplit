@@ -8,9 +8,11 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              
-             
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+             
+             
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -22,7 +24,7 @@
                      x:Name="RadioButtonGroupChoiceChipPrimaryOutline">
 
                 <ListBoxItem IsSelected="True" Content="Toàn bộ chuyến đi"/>
-                <ListBoxItem Content="Đã từng đi"/>
+                <ListBoxItem  Content="Đã từng đi"/>
                 <ListBoxItem Content="Sắp đi"/>
 
             </ListBox>
@@ -32,14 +34,14 @@
         <materialDesign:Card Grid.Row="1" materialDesign:ShadowAssist.ShadowDepth="Depth5"
                                  Padding="10" Margin="10">
             <!--Binding list items-->
-            <ListView ItemsSource="{Binding Items1}">
+            <ListView ItemsSource="{Binding ListJourney}">
                 <ListView.View>
                     <GridView AllowsColumnReorder="False">
-                        <GridViewColumn DisplayMemberBinding="{Binding Code}"
+                        <GridViewColumn DisplayMemberBinding="{Binding date_start, StringFormat='dd-MM-yyyy'}"
                                         Header="Ngày khởi hành" />
-                        <GridViewColumn DisplayMemberBinding="{Binding Name}"
+                        <GridViewColumn DisplayMemberBinding="{Binding date_end, StringFormat='dd-MM-yyyy'}"
                                         Header="Ngày kết thúc" />
-                        <GridViewColumn DisplayMemberBinding="{Binding Description}"
+                        <GridViewColumn DisplayMemberBinding="{Binding end_place}"
                                         Header="Địa điểm" />
                         <GridViewColumn Header="Thành viên">
                             <GridViewColumn.CellTemplate>
@@ -55,7 +57,7 @@
                         <GridViewColumn Header="Tổng tiền" >
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="10,000 VND"/>
+                                    <TextBlock Text="{Binding total_cost}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
