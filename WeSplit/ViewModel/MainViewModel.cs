@@ -15,7 +15,6 @@ namespace WeSplit.ViewModel
     {
         public DateTime Today = DateTime.Today;
         public ICommand AddJourneyCommand { get; set; }
-        public ICommand ShowAddJourneyView { get; set; }
         public ICommand AddJRouteCommand { get; set; }
         public ICommand ListJourneyCommand { get; set; }
         public ICommand ListJourneyGoneCommand { get; set; }
@@ -85,10 +84,6 @@ namespace WeSplit.ViewModel
             SelectedPlace = ListPlace != null ? ListPlace.First() : null;
             SelectedProvince = ListProvince.Count != 0 ? ListProvince.First() : null;
             StartDate = EndDate = Today;
-            ShowAddJourneyView = new RelayCommand<object>((p) => { return true; }, (p) =>
-            {
-                //handle logic here
-            });
 
             AddJourneyCommand = new RelayCommand<object>((p) => 
             {

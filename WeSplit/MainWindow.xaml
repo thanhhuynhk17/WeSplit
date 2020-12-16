@@ -41,9 +41,9 @@
         <Grid Grid.Row="1">
             <!--App Menu-->
             <StackPanel Orientation="Horizontal" Margin="4">
-                <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}"
+                <RadioButton Click="HomeBtn_Click" Style="{StaticResource MaterialDesignTabRadioButton}"
                              Margin="4" IsChecked="True" Content="Trang chủ" />
-                <RadioButton Command="{Binding ShowAddJourneyView}" Style="{StaticResource MaterialDesignTabRadioButton}"
+                <RadioButton Click="NewJourneyBtn_Click" Style="{StaticResource MaterialDesignTabRadioButton}"
                              Margin="4" IsChecked="False" Content="Tạo mới chuyến đi" />
                 <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}"
                              Margin="4" IsChecked="False" Content="Về chúng tôi"/>
@@ -57,8 +57,10 @@
         <!--Filter Menu/-->
         
         <!--Content-->
-        <userControl:HomeContentUC Grid.Row="3">
+        <userControl:HomeContentUC x:Name="HomeUC" Visibility="Visible" Grid.Row="3">
         </userControl:HomeContentUC>
+        <userControl:AddJourneyUC x:Name="NewJourneyUC" Visibility="Hidden" Grid.Row="3">
+        </userControl:AddJourneyUC>
         <!--Content/-->
     </Grid>
 </Window>
