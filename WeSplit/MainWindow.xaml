@@ -51,16 +51,10 @@
             <!--App Menu/-->
         </Grid>
 
-        <!--Filter Menu-->
-       
-        
-        <!--Filter Menu/-->
-        
+
         <!--Content-->
-        <userControl:HomeContentUC x:Name="HomeUC" Visibility="Visible" Grid.Row="3">
-        </userControl:HomeContentUC>
-        <userControl:AddJourneyUC x:Name="NewJourneyUC" Visibility="Hidden" Grid.Row="3">
-        </userControl:AddJourneyUC>
+        <userControl:DetailUC Grid.Row="2">
+        </userControl:DetailUC>
         <!--Content/-->
     </Grid>
 </Window>
