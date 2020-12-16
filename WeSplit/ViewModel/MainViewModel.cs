@@ -7,19 +7,29 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using WeSplit.Helpers;
 using WeSplit.Model;
 
 namespace WeSplit.ViewModel
 {
     public class MainViewModel : BaseViewModel
     {
-        #region Command
+        #region Journey_Command
         public DateTime Today = DateTime.Today;
         public ICommand AddJourneyCommand { get; set; }
         public ICommand AddJRouteCommand { get; set; }
         public ICommand ListJourneyCommand { get; set; }
         public ICommand ListJourneyGoneCommand { get; set; }
         public ICommand ListJourneyGoingToCommand { get; set; }
+        #endregion
+
+        #region ControlBar_Command
+        public ICommand CloseWindowCmd { get; set; }
+        public ICommand RestoreWindowCmd { get; set; }
+        public ICommand MinimizeWindowCmd { get; set; }
+        public ICommand MouseMoveWindowCmd { get; set; }
+        public ICommand SearchJourneyCmd { get; set; }
+
         #endregion
 
         #region List_Model
@@ -83,6 +93,9 @@ namespace WeSplit.ViewModel
 
         private journey _SelectedItem;
         public journey SelectedItem { get => _SelectedItem; set { _SelectedItem = value; OnPropertyChanged(); } }
+
+        private string _Keyword;
+        public string Keyword { get => _Keyword; set { _Keyword = value; OnPropertyChanged(); } }
         #endregion
         public MainViewModel()
         {
@@ -95,7 +108,10 @@ namespace WeSplit.ViewModel
             SelectedProvince = ListProvince.Count != 0 ? ListProvince.First() : null;
             StartDate = EndDate = Today;
             #endregion
-            #region command
+
+            #region Command
+
+            #region Journey Handlers
             AddJourneyCommand = new RelayCommand<object>((p) => 
             {
                 if (string.IsNullOrEmpty(Name))
@@ -139,21 +155,85 @@ namespace WeSplit.ViewModel
 
             ListJourneyCommand = new RelayCommand<object>((p) =>{ return true; }, (p) =>
             {
-                var ListEndOfTrip = DataProvider.Ins.DB.journeys.ToList<journey>();
+                var ListEndOfTrip = DataProvider.Ins.DB.journeys.Where(x => x.name.Contains(Keyword)).ToList<journey>();
                 ListJourney = new ObservableCollection<journey>(ListEndOfTrip);
             });
 
             ListJourneyGoneCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
-                var ListEndOfTrip = DataProvider.Ins.DB.journeys.Where(x=> x.status == 1).ToList<journey>();
-                ListJourney = new ObservableCollection<journey>(ListEndOfTrip);
+                var ListJourneyGone = DataProvider.Ins.DB.journeys.Where(x=> x.status == 1).Where(x => x.name.Contains(Keyword)).ToList<journey>();
+                ListJourney = new ObservableCollection<journey>(ListJourneyGone);
             });
 
             ListJourneyGoingToCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
-                var ListEndOfTrip = DataProvider.Ins.DB.journeys.Where(x => x.status == 2).ToList<journey>();
-                ListJourney = new ObservableCollection<journey>(ListEndOfTrip);
+                var ListJourneyGone = DataProvider.Ins.DB.journeys.Where(x => x.status == 2).Where(x => x.name.Contains(Keyword)).ToList<journey>();
+                ListJourney = new ObservableCollection<journey>(ListJourneyGone);
             });
+            #endregion
+            
+            #region ControlBar handlers
+            // Close Window
+            CloseWindowCmd = new RelayCommand<UserControl>(
+                                    (p) => { return p == null ? false : true; },
+                                    (p) => {
+                                        FrameworkElement window = WindowHandler.GetParentWindow(p);
+                                        var w = (window as Window);
+                                        if (w != null)
+                                        {
+                                            w.Close();
+                                        }
+                                    });
+            // Restore Up&Down Window
+            RestoreWindowCmd = new RelayCommand<UserControl>(
+                                    (p) => { return p == null ? false : true; },
+                                    (p) => {
+                                        FrameworkElement window = WindowHandler.GetParentWindow(p);
+                                        var w = (window as Window);
+                                        if (w != null)
+                                        {
+                                            // Check window state: maximized or minimized
+                                            if (w.WindowState != WindowState.Maximized)
+                                            {
+                                                w.WindowState = WindowState.Maximized;
+                                            }
+                                            else
+                                            {
+                                                w.WindowState = WindowState.Normal;
+                                            }
+                                        }
+                                    });
+            // Minimize Window
+            MinimizeWindowCmd = new RelayCommand<UserControl>(
+                                    (p) => { return p == null ? false : true; },
+                                    (p) => {
+                                        FrameworkElement window = WindowHandler.GetParentWindow(p);
+                                        var w = (window as Window);
+                                        if (w != null)
+                                        {
+                                            w.WindowState = WindowState.Minimized;
+                                        }
+                                    });
+            // Mouse left button down move Window
+            MouseMoveWindowCmd = new RelayCommand<UserControl>(
+                                    (p) => { return p == null ? false : true; },
+                                    (p) => {
+                                        FrameworkElement window = WindowHandler.GetParentWindow(p);
+                                        var w = (window as Window);
+                                        w.DragMove();
+                                    });
+
+            // Search Journey by keyword
+            SearchJourneyCmd = new RelayCommand<UserControl>((p) => 
+            { 
+                return Keyword == null ? false : true; 
+            }, (p) => 
+            {
+                var ListJFilteredourney = DataProvider.Ins.DB.journeys.Where(x => x.name.Contains(Keyword)).ToList<journey>();
+                ListJourney = new ObservableCollection<journey>(ListJFilteredourney);
+            });
+
+            #endregion
 
             #endregion
         }
