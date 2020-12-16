@@ -13,13 +13,16 @@ namespace WeSplit.ViewModel
 {
     public class MainViewModel : BaseViewModel
     {
+        #region Command
         public DateTime Today = DateTime.Today;
         public ICommand AddJourneyCommand { get; set; }
         public ICommand AddJRouteCommand { get; set; }
         public ICommand ListJourneyCommand { get; set; }
         public ICommand ListJourneyGoneCommand { get; set; }
         public ICommand ListJourneyGoingToCommand { get; set; }
+        #endregion
 
+        #region List_Model
         private ObservableCollection<Model.journey> _ListJourney;
         public ObservableCollection<Model.journey> ListJourney { get => _ListJourney; set { _ListJourney = value; OnPropertyChanged(); } }
 
@@ -34,7 +37,9 @@ namespace WeSplit.ViewModel
 
         private ObservableCollection<Model.place> _ListEndPlace;
         public ObservableCollection<Model.place> ListEndPlace { get => _ListEndPlace; set { _ListEndPlace = value; OnPropertyChanged(); } }
+        #endregion
 
+        #region property
         private string _Name;
         public string Name { get => _Name; set { _Name = value; OnPropertyChanged(); } }
 
@@ -75,8 +80,13 @@ namespace WeSplit.ViewModel
 
         private Boolean _IsBuyPlaneTicket;
         public Boolean IsBuyPlaneTicket { get => _IsBuyPlaneTicket; set { _IsBuyPlaneTicket = value; OnPropertyChanged(); } }
+
+        private journey _SelectedItem;
+        public journey SelectedItem { get => _SelectedItem; set { _SelectedItem = value; OnPropertyChanged(); } }
+        #endregion
         public MainViewModel()
         {
+            #region constructor
             ListJourney = new ObservableCollection<Model.journey>(DataProvider.Ins.DB.journeys);
             ListPlace = new ObservableCollection<Model.place>(DataProvider.Ins.DB.places);
             ListProvince = new ObservableCollection<Model.province>(DataProvider.Ins.DB.provinces);
@@ -84,7 +94,8 @@ namespace WeSplit.ViewModel
             SelectedPlace = ListPlace != null ? ListPlace.First() : null;
             SelectedProvince = ListProvince.Count != 0 ? ListProvince.First() : null;
             StartDate = EndDate = Today;
-
+            #endregion
+            #region command
             AddJourneyCommand = new RelayCommand<object>((p) => 
             {
                 if (string.IsNullOrEmpty(Name))
@@ -144,6 +155,7 @@ namespace WeSplit.ViewModel
                 ListJourney = new ObservableCollection<journey>(ListEndOfTrip);
             });
 
+            #endregion
         }
     }
 }

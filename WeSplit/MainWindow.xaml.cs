@@ -29,13 +29,17 @@ namespace WeSplit
         private void NewJourneyBtn_Click(object sender, RoutedEventArgs e)
         {
             HomeUC.Visibility = System.Windows.Visibility.Hidden;
+            DetailJourneyUC.Visibility = System.Windows.Visibility.Hidden;
             NewJourneyUC.Visibility = System.Windows.Visibility.Visible;
         }
 
         private void HomeBtn_Click(object sender, RoutedEventArgs e)
         {
             NewJourneyUC.Visibility = System.Windows.Visibility.Hidden;
+            DetailJourneyUC.Visibility = System.Windows.Visibility.Hidden;
             HomeUC.Visibility = System.Windows.Visibility.Visible;
         }
+
+        
     }
 }

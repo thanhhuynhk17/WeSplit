@@ -57,12 +57,12 @@
             <materialDesign:Card Grid.Row="1"
                                  materialDesign:ShadowAssist.ShadowDepth="Depth2"
                                  Padding="4" Margin="4 4 4 10">
-                <DataGrid ItemsSource="{Binding ListJourney}"
+                <DataGrid ItemsSource="{Binding SelectedItem.journey_member}"
                           CanUserAddRows="True"
                           AutoGenerateColumns="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Họ tên" Binding="{Binding name}"/>
-                        <DataGridTextColumn Header="Số điện thoại" Binding="{Binding status}"/>
+                        <DataGridTextColumn Header="Số điện thoại" Binding="{Binding phone}"/>
                         <DataGridTextColumn Header="Tiền thu" Binding="{Binding total_cost}"/>
                     </DataGrid.Columns>
                 </DataGrid>
@@ -86,17 +86,17 @@
                 <StackPanel>
                     <!--Title-->
                     <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}"
-                           Text="Tên chuyến đi"/>
+                           Text="{Binding SelectedItem.name}"/>
                     <!--Title/-->
 
                     <!--Date start & Date end-->
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Style="{StaticResource MaterialDesignCaptionTextBlock}"
-                               Text="{Binding StartDate}"/>
+                               Text="{Binding SelectedItem.date_start}"/>
                         <TextBlock Style="{StaticResource MaterialDesignCaptionTextBlock}"
                                Text="-"/>
                         <TextBlock Style="{StaticResource MaterialDesignCaptionTextBlock}"
-                               Text="{Binding EndDate}"/>
+                               Text="{Binding SelectedItem.date_end}"/>
                     </StackPanel>
                     <!--Date start & Date end/-->
 
