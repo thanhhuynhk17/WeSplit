@@ -13,10 +13,10 @@ namespace WeSplit.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class WeSplitEntities3 : DbContext
+    public partial class WeSplitEntities : DbContext
     {
-        public WeSplitEntities3()
-            : base("name=WeSplitEntities3")
+        public WeSplitEntities()
+            : base("name=WeSplitEntities")
         {
         }
     

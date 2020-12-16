@@ -129,9 +129,6 @@
     <Compile Include="Model\route.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\sysdiagram.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="SplashScreenWindow.xaml.cs">
       <DependentUpon>SplashScreenWindow.xaml</DependentUpon>
     </Compile>
@@ -140,6 +137,9 @@
     </Compile>
     <Compile Include="UserControlWeSplit\ControlBarUC.xaml.cs">
       <DependentUpon>ControlBarUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlWeSplit\DetailUC.xaml.cs">
+      <DependentUpon>DetailUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControlWeSplit\HomeContentUC.xaml.cs">
       <DependentUpon>HomeContentUC.xaml</DependentUpon>
@@ -173,6 +173,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControlWeSplit\ControlBarUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlWeSplit\DetailUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
