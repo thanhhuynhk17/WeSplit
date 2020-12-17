@@ -51,27 +51,22 @@
                        MouseDoubleClick="ListView_MouseDoubleClick">
                 <ListView.View>
                     <GridView AllowsColumnReorder="False">
+                        
+                        <GridViewColumn DisplayMemberBinding="{Binding name, StringFormat='dd-MM-yyyy'}"
+                                        Header="Tên chuyến đi" >
+                        </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding date_start, StringFormat='dd-MM-yyyy'}"
                                         Header="Ngày khởi hành" />
                         <GridViewColumn DisplayMemberBinding="{Binding date_end, StringFormat='dd-MM-yyyy'}"
                                         Header="Ngày kết thúc" />
                         <GridViewColumn DisplayMemberBinding="{Binding place.name}"
                                         Header="Địa điểm" />
-                        <GridViewColumn Header="Thành viên">
+                        <GridViewColumn DisplayMemberBinding="{Binding place.name}"
+                                        Header="Tổng số thành viên"/>
+                        <GridViewColumn Header="Tổng tiền">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <ComboBox Width="100">
-                                        <ComboBoxItem Content="Nguyễn Văn A" />
-                                        <ComboBoxItem Content="Nguyễn Văn B" />
-                                        <ComboBoxItem Content="Nguyễn Văn C" />
-                                    </ComboBox>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Tổng tiền" >
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding total_cost}" />
+                                    <TextBlock Text="{Binding total_cost}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
