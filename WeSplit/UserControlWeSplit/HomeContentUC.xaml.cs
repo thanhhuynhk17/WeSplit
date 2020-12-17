@@ -33,8 +33,10 @@ namespace WeSplit.UserControlWeSplit
             var HomeContentUC = (UserControl)w.FindName("HomeUC");
             var NewJourneyUC = (UserControl)w.FindName("NewJourneyUC");
             var DetailJourneyUC = (UserControl)w.FindName("DetailJourneyUC");
+            var NewPlaceUC = (UserControl)w.FindName("NewPlaceUC");
             HomeContentUC.Visibility = System.Windows.Visibility.Hidden;
             NewJourneyUC.Visibility = System.Windows.Visibility.Hidden;
+            NewPlaceUC.Visibility = System.Windows.Visibility.Hidden;
             DetailJourneyUC.Visibility = System.Windows.Visibility.Visible;
         }
 

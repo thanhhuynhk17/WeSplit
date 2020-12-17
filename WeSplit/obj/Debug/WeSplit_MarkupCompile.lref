@@ -4,6 +4,7 @@ FC:\WPF\WeSplit\WeSplit\MainWindow.xaml;;
 FC:\WPF\WeSplit\WeSplit\ResourceXAML\MainResource.xaml;;
 FC:\WPF\WeSplit\WeSplit\SplashScreenWindow.xaml;;
 FC:\WPF\WeSplit\WeSplit\UserControlWeSplit\AddJourneyUC.xaml;;
+FC:\WPF\WeSplit\WeSplit\UserControlWeSplit\AddPlace.xaml;;
 FC:\WPF\WeSplit\WeSplit\UserControlWeSplit\ControlBarUC.xaml;;
 FC:\WPF\WeSplit\WeSplit\UserControlWeSplit\DetailUC.xaml;;
 FC:\WPF\WeSplit\WeSplit\UserControlWeSplit\HomeContentUC.xaml;;
