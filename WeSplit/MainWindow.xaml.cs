@@ -30,6 +30,7 @@ namespace WeSplit
         {
             HomeUC.Visibility = System.Windows.Visibility.Hidden;
             DetailJourneyUC.Visibility = System.Windows.Visibility.Hidden;
+            NewPlaceUC.Visibility = System.Windows.Visibility.Hidden;
             NewJourneyUC.Visibility = System.Windows.Visibility.Visible;
         }
 
@@ -37,9 +38,16 @@ namespace WeSplit
         {
             NewJourneyUC.Visibility = System.Windows.Visibility.Hidden;
             DetailJourneyUC.Visibility = System.Windows.Visibility.Hidden;
+            NewPlaceUC.Visibility = System.Windows.Visibility.Hidden;
             HomeUC.Visibility = System.Windows.Visibility.Visible;
         }
 
-        
+        private void NewPlaceBtn_Click(object sender, RoutedEventArgs e)
+        {
+            HomeUC.Visibility = System.Windows.Visibility.Hidden;
+            DetailJourneyUC.Visibility = System.Windows.Visibility.Hidden;
+            HomeUC.Visibility = System.Windows.Visibility.Hidden;
+            NewPlaceUC.Visibility = System.Windows.Visibility.Visible;
+        }
     }
 }

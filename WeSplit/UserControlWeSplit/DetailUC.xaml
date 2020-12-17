@@ -16,7 +16,6 @@
             TextOptions.TextRenderingMode="Auto"
             Background="{DynamicResource MaterialDesignPaper}"
             FontFamily="{DynamicResource MaterialDesignFont}"
-
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -56,15 +55,20 @@
             <materialDesign:Card Grid.Row="1"
                                  materialDesign:ShadowAssist.ShadowDepth="Depth2"
                                  Padding="4" Margin="4 4 4 10">
-                <DataGrid ItemsSource="{Binding SelectedItem.journey_member}"
+                <StackPanel>
+                    <DataGrid ItemsSource="{Binding SelectedItem.journey_member}"
                           CanUserAddRows="True"
                           AutoGenerateColumns="False">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Họ tên" Binding="{Binding name}"/>
-                        <DataGridTextColumn Header="Số điện thoại" Binding="{Binding phone}"/>
-                        <DataGridTextColumn Header="Tiền thu" Binding="{Binding total_cost}"/>
-                    </DataGrid.Columns>
-                </DataGrid>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Họ tên" Binding="{Binding name}"/>
+                            <DataGridTextColumn Header="Số điện thoại" Binding="{Binding phone}"/>
+                            <DataGridTextColumn Header="Tiền thu" Binding="{Binding total_cost}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    
+
+                </StackPanel>
+                
             </materialDesign:Card>
             <!--Member list/-->
 

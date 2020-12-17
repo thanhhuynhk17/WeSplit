@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using WeSplit.Helpers;
 using WeSplit.Model;
 
 using LiveCharts;
@@ -16,13 +17,27 @@ namespace WeSplit.ViewModel
 {
     public class MainViewModel : BaseViewModel
     {
-        #region Command
         public DateTime Today = DateTime.Today;
+        #region Journey_Command
         public ICommand AddJourneyCommand { get; set; }
         public ICommand AddJRouteCommand { get; set; }
         public ICommand ListJourneyCommand { get; set; }
         public ICommand ListJourneyGoneCommand { get; set; }
         public ICommand ListJourneyGoingToCommand { get; set; }
+        #endregion
+
+        #region Place_Command
+        public ICommand AddPlaceCmd { get; set; }
+        public ICommand OpenFileDialogCmd { get; set; }
+        #endregion
+
+        #region ControlBar_Command
+        public ICommand CloseWindowCmd { get; set; }
+        public ICommand RestoreWindowCmd { get; set; }
+        public ICommand MinimizeWindowCmd { get; set; }
+        public ICommand MouseMoveWindowCmd { get; set; }
+        public ICommand SearchJourneyCmd { get; set; }
+
         #endregion
 
         #region List_Model
@@ -86,6 +101,21 @@ namespace WeSplit.ViewModel
 
         private journey _SelectedItem;
         public journey SelectedItem { get => _SelectedItem; set { _SelectedItem = value; OnPropertyChanged(); } }
+
+        private string _Keyword;
+        public string Keyword { get => _Keyword; set { _Keyword = value; OnPropertyChanged(); } }
+
+        private string _PlaceName;
+        public string PlaceName { get => _PlaceName; set { _PlaceName = value; OnPropertyChanged(); } }
+
+        private string _DescriptionPlace;
+        public string DescriptionPlace { get => _DescriptionPlace; set { _DescriptionPlace = value; OnPropertyChanged(); } }
+
+        private string _AddressPlace;
+        public string AddressPlace { get => _AddressPlace; set { _AddressPlace = value; OnPropertyChanged(); } }
+
+        private string _PlaceImage;
+        public string PlaceImage { get => _PlaceImage; set { _PlaceImage = value; OnPropertyChanged(); } }
         #endregion
 
         //Chart label
@@ -94,6 +124,7 @@ namespace WeSplit.ViewModel
         public MainViewModel()
         {
             #region constructor
+            Keyword = "";
             ListJourney = new ObservableCollection<Model.journey>(DataProvider.Ins.DB.journeys);
             ListPlace = new ObservableCollection<Model.place>(DataProvider.Ins.DB.places);
             ListProvince = new ObservableCollection<Model.province>(DataProvider.Ins.DB.provinces);
@@ -102,7 +133,8 @@ namespace WeSplit.ViewModel
             SelectedProvince = ListProvince.Count != 0 ? ListProvince.First() : null;
             StartDate = EndDate = Today;
             #endregion
-            #region command
+
+            #region Journey Handlers
             AddJourneyCommand = new RelayCommand<object>((p) => 
             {
                 if (string.IsNullOrEmpty(Name))
@@ -131,6 +163,7 @@ namespace WeSplit.ViewModel
                     DataProvider.Ins.DB.routes.Add(RouteIns);
                 }
                 DataProvider.Ins.DB.SaveChanges();
+                MessageBox.Show("Thêm thành công", "Thông Báo", MessageBoxButton.OK, MessageBoxImage.Information);
             });
 
             AddJRouteCommand = new RelayCommand<object>((p) => 
@@ -146,24 +179,125 @@ namespace WeSplit.ViewModel
 
             ListJourneyCommand = new RelayCommand<object>((p) =>{ return true; }, (p) =>
             {
-                var ListEndOfTrip = DataProvider.Ins.DB.journeys.ToList<journey>();
+                var ListEndOfTrip = DataProvider.Ins.DB.journeys.Where(x => x.name.Contains(Keyword)).ToList<journey>();
                 ListJourney = new ObservableCollection<journey>(ListEndOfTrip);
             });
 
             ListJourneyGoneCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
-                var ListEndOfTrip = DataProvider.Ins.DB.journeys.Where(x=> x.status == 1).ToList<journey>();
-                ListJourney = new ObservableCollection<journey>(ListEndOfTrip);
+                var ListJourneyGone = DataProvider.Ins.DB.journeys.Where(x=> x.status == 1).Where(x => x.name.Contains(Keyword)).ToList<journey>();
+                ListJourney = new ObservableCollection<journey>(ListJourneyGone);
             });
 
             ListJourneyGoingToCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
-                var ListEndOfTrip = DataProvider.Ins.DB.journeys.Where(x => x.status == 2).ToList<journey>();
-                ListJourney = new ObservableCollection<journey>(ListEndOfTrip);
+                var ListJourneyGone = DataProvider.Ins.DB.journeys.Where(x => x.status == 2).Where(x => x.name.Contains(Keyword)).ToList<journey>();
+                ListJourney = new ObservableCollection<journey>(ListJourneyGone);
+            });
+            #endregion
+            
+            #region ControlBar handlers
+            // Close Window
+            CloseWindowCmd = new RelayCommand<UserControl>(
+                                    (p) => { return p == null ? false : true; },
+                                    (p) => {
+                                        FrameworkElement window = WindowHandler.GetParentWindow(p);
+                                        var w = (window as Window);
+                                        if (w != null)
+                                        {
+                                            w.Close();
+                                        }
+                                    });
+            // Restore Up&Down Window
+            RestoreWindowCmd = new RelayCommand<UserControl>(
+                                    (p) => { return p == null ? false : true; },
+                                    (p) => {
+                                        FrameworkElement window = WindowHandler.GetParentWindow(p);
+                                        var w = (window as Window);
+                                        if (w != null)
+                                        {
+                                            // Check window state: maximized or minimized
+                                            if (w.WindowState != WindowState.Maximized)
+                                            {
+                                                w.WindowState = WindowState.Maximized;
+                                            }
+                                            else
+                                            {
+                                                w.WindowState = WindowState.Normal;
+                                            }
+                                        }
+                                    });
+            // Minimize Window
+            MinimizeWindowCmd = new RelayCommand<UserControl>(
+                                    (p) => { return p == null ? false : true; },
+                                    (p) => {
+                                        FrameworkElement window = WindowHandler.GetParentWindow(p);
+                                        var w = (window as Window);
+                                        if (w != null)
+                                        {
+                                            w.WindowState = WindowState.Minimized;
+                                        }
+                                    });
+            // Mouse left button down move Window
+            MouseMoveWindowCmd = new RelayCommand<UserControl>(
+                                    (p) => { return p == null ? false : true; },
+                                    (p) => {
+                                        FrameworkElement window = WindowHandler.GetParentWindow(p);
+                                        var w = (window as Window);
+                                        w.DragMove();
+                                    });
+
+            // Search Journey by keyword
+            SearchJourneyCmd = new RelayCommand<UserControl>((p) => 
+            { 
+                return Keyword == null ? false : true; 
+            }, (p) => 
+            {
+                var ListJFilteredourney = DataProvider.Ins.DB.journeys.Where(x => x.name.Contains(Keyword)).ToList<journey>();
+                ListJourney = new ObservableCollection<journey>(ListJFilteredourney);
             });
 
             #endregion
 
+            #region Place Handler
+            AddPlaceCmd = new RelayCommand<object>((p) =>
+            {
+                if (string.IsNullOrEmpty(PlaceName))
+                    return false;
+
+                var nameList = DataProvider.Ins.DB.places.Where(x => x.name == PlaceName);
+                if (nameList == null || nameList.Count() != 0)
+                    return false;
+
+                if (SelectedProvince == null)
+                    return false;
+
+                return true;
+            }, (p) =>
+            {
+                var place = new place() { name = PlaceName, description = DescriptionPlace, address = AddressPlace, province_id = SelectedProvince.id, image = PlaceImage };
+                ListPlace.Add(place);
+
+                DataProvider.Ins.DB.places.Add(place);
+                DataProvider.Ins.DB.SaveChanges();
+                MessageBox.Show("Thêm Thành Công", "Thông Báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                
+            });
+
+            OpenFileDialogCmd = new RelayCommand<object>((p) => { return true;}, (p) =>
+            {
+                Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+                dlg.DefaultExt = ".png";
+                //dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
+
+                // Display OpenFileDialog by calling ShowDialog method 
+                Nullable<bool> result = dlg.ShowDialog();
+
+                if (result == true)
+                    PlaceImage = dlg.FileName;
+            });
+            #endregion
             //Chart label
             PointLabel = chartPoint => $"{chartPoint.Y} ({chartPoint.Participation:P1})";
         }

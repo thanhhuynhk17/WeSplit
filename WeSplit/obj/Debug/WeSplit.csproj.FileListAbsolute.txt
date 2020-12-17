@@ -119,3 +119,5 @@ C:\WPF\WeSplit\WeSplit\obj\Debug\WeSplit_Content.g.cs
 C:\WPF\WeSplit\WeSplit\obj\Debug\WeSplit.csprojAssemblyReference.cache
 C:\WPF\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\DetailUC.g.cs
 C:\WPF\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\DetailUC.baml
+C:\WPF\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\AddPlace.g.cs
+C:\WPF\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\AddPlace.baml

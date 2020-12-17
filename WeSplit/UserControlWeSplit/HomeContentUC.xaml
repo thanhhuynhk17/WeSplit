@@ -46,7 +46,7 @@
                                  Padding="10" Margin="10">
 
             <!--Binding list items-->
-            <ListView ItemsSource="{Binding ListJourney}" 
+            <ListView ItemsSource="{Binding ListJourney, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" 
                        SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}"
                        MouseDoubleClick="ListView_MouseDoubleClick">
                 <ListView.View>

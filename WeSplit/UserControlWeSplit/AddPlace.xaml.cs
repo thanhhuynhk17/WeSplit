@@ -12,22 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WeSplit.ViewModel;
 
 namespace WeSplit.UserControlWeSplit
 {
-
     /// <summary>
-    /// Interaction logic for ControlBarUC.xaml
+    /// Interaction logic for AddPlace.xaml
     /// </summary>
-    public partial class ControlBarUC : UserControl
+    public partial class AddPlace : UserControl
     {
-        public ControlBarViewModel ViewModel { get; set; }
-
-        public ControlBarUC()
+        public AddPlace()
         {
             InitializeComponent();
-            //this.DataContext = ViewModel = new ControlBarViewModel();
         }
     }
 }

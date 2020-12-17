@@ -7,7 +7,7 @@
              
                 xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
                 xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-                
+                DataContext="{StaticResource MainViewModel}"
                 Name="ControlBar"
                 mc:Ignorable="d" 
                 d:DesignHeight="450" d:DesignWidth="800">
@@ -84,13 +84,13 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
 
-                            <TextBox Grid.Column="0" Margin="8 0 0 0"
+                            <TextBox Text="{Binding Keyword}" Grid.Column="0" Margin="8 0 0 0"
                                      materialDesign:HintAssist.Hint="Search..."
                                      materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                      BorderThickness="0" MinWidth="200" VerticalAlignment="Center" />
                             <!--Search Button-->
                             <Button Style="{DynamicResource MaterialDesignToolButton}"
-                                    Grid.Column="2">
+                                    Command="{Binding SearchJourneyCmd}" Grid.Column="2">
                                 <materialDesign:PackIcon Kind="Magnify" Opacity=".56"
                                                          Margin="8 0 0 0" />
                             </Button>
