@@ -41,19 +41,40 @@
         <Grid Grid.Row="1">
             <!--App Menu-->
             <StackPanel Orientation="Horizontal" Margin="4">
-                <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}"
+                <RadioButton Click="HomeBtn_Click" Style="{StaticResource MaterialDesignTabRadioButton}"
                              Margin="4" IsChecked="True" Content="Trang chủ" />
-                <RadioButton Command="{Binding ShowAddJourneyView}" Style="{StaticResource MaterialDesignTabRadioButton}"
+                <RadioButton Click="NewJourneyBtn_Click" Style="{StaticResource MaterialDesignTabRadioButton}"
                              Margin="4" IsChecked="False" Content="Tạo mới chuyến đi" />
+                <RadioButton Click="NewPlaceBtn_Click" Style="{StaticResource MaterialDesignTabRadioButton}"
+                             Margin="4" IsChecked="False" Content="Tạo mới địa danh"/>
                 <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}"
                              Margin="4" IsChecked="False" Content="Về chúng tôi"/>
             </StackPanel>
             <!--App Menu/-->
         </Grid>
 
+        <!--Filter Menu
+        <Grid Grid.Row="2" Margin="4">
+            <ListBox Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineListBox}"
+                     x:Name="RadioButtonGroupChoiceChipPrimaryOutline">
+                
+                <ListBoxItem IsSelected="True" Content="Toàn bộ chuyến đi"/>
+                <ListBoxItem Content="Đã từng đi"/>
+                <ListBoxItem Content="Sắp đi"/>
+
+            </ListBox>
+        </Grid>
+        -->
+        <!--Filter Menu/-->
         <!--Content-->
-        <userControl:DetailUC Grid.Row="2">
+        <userControl:HomeContentUC x:Name="HomeUC" Grid.Row="2" Visibility="Visible">
+        </userControl:HomeContentUC>
+        <userControl:AddJourneyUC x:Name="NewJourneyUC" Grid.Row="2" Visibility="Hidden">
+        </userControl:AddJourneyUC>
+        <userControl:DetailUC x:Name="DetailJourneyUC" Grid.Row="2" Visibility="Hidden">
         </userControl:DetailUC>
+        <userControl:AddPlace x:Name="NewPlaceUC" Grid.Row="2" Visibility="Hidden">
+        </userControl:AddPlace>
         <!--Content/-->
     </Grid>
 </Window>

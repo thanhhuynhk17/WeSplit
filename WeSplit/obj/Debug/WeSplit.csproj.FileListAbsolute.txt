@@ -92,7 +92,6 @@ C:\WPF\WeSplit\WeSplit\bin\Debug\Microsoft.Expression.Interactions.xml
 C:\WPF\WeSplit\WeSplit\bin\Debug\Microsoft.Xaml.Behaviors.pdb
 C:\WPF\WeSplit\WeSplit\bin\Debug\Microsoft.Xaml.Behaviors.xml
 C:\WPF\WeSplit\WeSplit\bin\Debug\System.Windows.Interactivity.xml
-C:\WPF\WeSplit\WeSplit\obj\Debug\WeSplit.csprojAssemblyReference.cache
 C:\WPF\WeSplit\WeSplit\obj\Debug\MainWindow.g.cs
 C:\WPF\WeSplit\WeSplit\obj\Debug\SplashScreenWindow.g.cs
 C:\WPF\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\ControlBarUC.g.cs
@@ -117,3 +116,8 @@ C:\WPF\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\HomeContentUC.baml
 C:\WPF\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\AddJourneyUC.g.cs
 C:\WPF\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\AddJourneyUC.baml
 C:\WPF\WeSplit\WeSplit\obj\Debug\WeSplit_Content.g.cs
+C:\WPF\WeSplit\WeSplit\obj\Debug\WeSplit.csprojAssemblyReference.cache
+C:\WPF\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\DetailUC.g.cs
+C:\WPF\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\DetailUC.baml
+C:\WPF\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\AddPlace.g.cs
+C:\WPF\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\AddPlace.baml

@@ -141,6 +141,9 @@
     <Compile Include="UserControlWeSplit\AddJourneyUC.xaml.cs">
       <DependentUpon>AddJourneyUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControlWeSplit\AddPlace.xaml.cs">
+      <DependentUpon>AddPlace.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControlWeSplit\ControlBarUC.xaml.cs">
       <DependentUpon>ControlBarUC.xaml</DependentUpon>
     </Compile>
@@ -178,6 +181,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControlWeSplit\AddJourneyUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlWeSplit\AddPlace.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
