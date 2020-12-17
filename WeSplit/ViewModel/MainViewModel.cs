@@ -9,6 +9,9 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using WeSplit.Model;
 
+using LiveCharts;
+using LiveCharts.Wpf;
+
 namespace WeSplit.ViewModel
 {
     public class MainViewModel : BaseViewModel
@@ -84,6 +87,10 @@ namespace WeSplit.ViewModel
         private journey _SelectedItem;
         public journey SelectedItem { get => _SelectedItem; set { _SelectedItem = value; OnPropertyChanged(); } }
         #endregion
+
+        //Chart label
+        public Func<ChartPoint, string> PointLabel { get; set; }
+
         public MainViewModel()
         {
             #region constructor
@@ -156,6 +163,9 @@ namespace WeSplit.ViewModel
             });
 
             #endregion
+
+            //Chart label
+            PointLabel = chartPoint => $"{chartPoint.Y} ({chartPoint.Participation:P1})";
         }
     }
 }

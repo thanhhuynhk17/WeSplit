@@ -7,6 +7,7 @@
              
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:userControl="clr-namespace:WeSplit.UserControlWeSplit"
              
             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
             TextElement.FontWeight="Regular"
@@ -15,7 +16,7 @@
             TextOptions.TextRenderingMode="Auto"
             Background="{DynamicResource MaterialDesignPaper}"
             FontFamily="{DynamicResource MaterialDesignFont}"
-             DataContext="{StaticResource MainViewModel}"
+
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -25,8 +26,8 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2.5*"/>
-            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="3.5*"/>
+            <ColumnDefinition Width="4*"/>
             <ColumnDefinition Width="2.5*"/>
         </Grid.ColumnDefinitions>
 
@@ -39,19 +40,17 @@
         <!--Members-->
         <Grid Grid.Row="1" Grid.Column="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="4*" />
+                <RowDefinition Height="6*" />
             </Grid.RowDefinitions>
 
-            <!--Image-->
+            <!--Chart-->
             <materialDesign:Card Grid.Row="0"
                                  materialDesign:ShadowAssist.ShadowDepth="Depth2"
                                  Padding="4" Margin="4">
-                <Image Source="../Assets/dau-tieng-lake.jpg"
-                       Width="Auto" 
-                       Stretch="UniformToFill"/>
+                <userControl:PieChartUC/>
             </materialDesign:Card>
-            <!--Image/-->
+            <!--Chart/-->
 
             <!--Member list-->
             <materialDesign:Card Grid.Row="1"
@@ -129,7 +128,7 @@
                 </StackPanel>
 
             </materialDesign:Card>
-            <!--Chart/-->
+            <!--Detail/-->
 
             <!--Image Slider-->
             <materialDesign:Card Grid.Row="1"
@@ -172,8 +171,8 @@
         <!--Summary-->
         <Grid Grid.Row="1" Grid.Column="2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="4*" />
+                <RowDefinition Height="6*" />
             </Grid.RowDefinitions>
 
             <!--Chart-->
@@ -182,7 +181,7 @@
                                  Padding="4" Margin="4">
                 <Image Source="../Assets/dau-tieng-lake.jpg"
                        Width="Auto" 
-                       Stretch="UniformToFill"/>
+                       Stretch="Uniform"/>
             </materialDesign:Card>
             <!--Chart/-->
 
