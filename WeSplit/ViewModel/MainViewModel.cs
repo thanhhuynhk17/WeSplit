@@ -10,6 +10,9 @@ using System.Windows.Input;
 using WeSplit.Helpers;
 using WeSplit.Model;
 
+using LiveCharts;
+using LiveCharts.Wpf;
+
 namespace WeSplit.ViewModel
 {
     public class MainViewModel : BaseViewModel
@@ -114,6 +117,10 @@ namespace WeSplit.ViewModel
         private string _PlaceImage;
         public string PlaceImage { get => _PlaceImage; set { _PlaceImage = value; OnPropertyChanged(); } }
         #endregion
+
+        //Chart label
+        public Func<ChartPoint, string> PointLabel { get; set; }
+
         public MainViewModel()
         {
             #region constructor
@@ -291,6 +298,8 @@ namespace WeSplit.ViewModel
                     PlaceImage = dlg.FileName;
             });
             #endregion
+            //Chart label
+            PointLabel = chartPoint => $"{chartPoint.Y} ({chartPoint.Participation:P1})";
         }
     }
 }
