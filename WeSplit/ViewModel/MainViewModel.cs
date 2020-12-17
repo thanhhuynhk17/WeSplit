@@ -9,6 +9,9 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using WeSplit.Model;
 
+using LiveCharts;
+using LiveCharts.Wpf;
+
 namespace WeSplit.ViewModel
 {
     public class MainViewModel : BaseViewModel
@@ -67,8 +70,13 @@ namespace WeSplit.ViewModel
 
         private Boolean _IsBuyPlaneTicket;
         public Boolean IsBuyPlaneTicket { get => _IsBuyPlaneTicket; set { _IsBuyPlaneTicket = value; OnPropertyChanged(); } }
+
+        //Chart label
+        public Func<ChartPoint, string> PointLabel { get; set; }
+
         public MainViewModel()
         {
+
             ListPlace = new ObservableCollection<Model.place>(DataProvider.Ins.DB.places);
             ListProvince = new ObservableCollection<Model.province>(DataProvider.Ins.DB.provinces);
             ListRoute = new ObservableCollection<route>();
@@ -120,6 +128,10 @@ namespace WeSplit.ViewModel
                 var RouteIns = new route() { place_start = EndPlace, description = Description, province_id = SelectedProvince.id, costs = RouteCost };
                 ListRoute.Add(RouteIns);
             });
+
+            //Chart label
+            PointLabel = chartPoint => $"{chartPoint.Y} ({chartPoint.Participation:P1})";
+
         }
     }
 }
