@@ -121,3 +121,11 @@ C:\WPF\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\DetailUC.g.cs
 C:\WPF\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\DetailUC.baml
 C:\WPF\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\AddPlace.g.cs
 C:\WPF\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\AddPlace.baml
+C:\WPF\WeSplit\WeSplit\bin\Debug\LiveCharts.dll
+C:\WPF\WeSplit\WeSplit\bin\Debug\LiveCharts.Wpf.dll
+C:\WPF\WeSplit\WeSplit\bin\Debug\LiveCharts.pdb
+C:\WPF\WeSplit\WeSplit\bin\Debug\LiveCharts.xml
+C:\WPF\WeSplit\WeSplit\bin\Debug\LiveCharts.Wpf.pdb
+C:\WPF\WeSplit\WeSplit\bin\Debug\LiveCharts.Wpf.xml
+C:\WPF\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\PieChartUC.g.cs
+C:\WPF\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\PieChartUC.baml
