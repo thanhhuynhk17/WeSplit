@@ -37,6 +37,7 @@ namespace WeSplit.ViewModel
         public ICommand MinimizeWindowCmd { get; set; }
         public ICommand MouseMoveWindowCmd { get; set; }
         public ICommand SearchJourneyCmd { get; set; }
+        public ICommand AddMemberCmd { get; set; }
 
         #endregion
 
@@ -119,6 +120,18 @@ namespace WeSplit.ViewModel
 
         private string _PlaceImage;
         public string PlaceImage { get => _PlaceImage; set { _PlaceImage = value; OnPropertyChanged(); } }
+
+        private bool _IsShowAddMember;
+        public bool IsShowAddMember { get => _IsShowAddMember; set { _IsShowAddMember = value; OnPropertyChanged(); } }
+
+        private string _MemberName;
+        public string MemberName { get => _MemberName; set { _MemberName = value; OnPropertyChanged(); } }
+
+        private string _MemberPhone;
+        public string MemberPhone { get => _MemberPhone; set { _MemberPhone = value; OnPropertyChanged(); } }
+
+        private float _MemberMoney;
+        public float MemberMoney { get => _MemberMoney; set { _MemberMoney = value; OnPropertyChanged(); } }
         #endregion
 
         //Chart label
@@ -133,6 +146,7 @@ namespace WeSplit.ViewModel
             ListProvince = new ObservableCollection<Model.province>(DataProvider.Ins.DB.provinces);
             ListRoute = new ObservableCollection<route>();
             ListMember = new ObservableCollection<Model.member>(DataProvider.Ins.DB.members);
+            IsShowAddMember = false;
             SelectedPlace = ListPlace != null ? ListPlace.First() : null;
             SelectedProvince = ListProvince.Count != 0 ? ListProvince.First() : null;
             StartDate = EndDate = Today;
@@ -300,6 +314,29 @@ namespace WeSplit.ViewModel
 
                 if (result == true)
                     PlaceImage = dlg.FileName;
+            });
+            #endregion
+
+            #region Add Member Handlers
+            AddMemberCmd = new RelayCommand<object>((p) =>
+            {
+                if (string.IsNullOrEmpty(MemberName))
+                    return false;
+                return true;
+            }, (p) =>
+            {
+                var member = new member() { name = MemberName, phone = MemberPhone };
+                DataProvider.Ins.DB.members.Add(member);
+                ListMember.Add(member);
+                DataProvider.Ins.DB.SaveChanges();
+
+                var memberIns = (member)DataProvider.Ins.DB.members.Where(x => x.name.Equals(MemberName)).FirstOrDefault();
+                var jouney_member = new journey_member() { journey_id = SelectedItem.id, member_id = memberIns.id, journey_member_money = MemberMoney };
+                DataProvider.Ins.DB.journey_member.Add(jouney_member);
+                DataProvider.Ins.DB.SaveChanges();
+
+                var journeyIns = (journey)DataProvider.Ins.DB.journeys.Where(x => x.id == SelectedItem.id).FirstOrDefault();
+                SelectedItem.journey_member = journeyIns.journey_member;
             });
             #endregion
             //Chart label

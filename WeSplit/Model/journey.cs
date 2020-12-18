@@ -11,8 +11,9 @@ namespace WeSplit.Model
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class journey
+    using WeSplit.ViewModel;
+
+    public partial class journey :BaseViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public journey()
@@ -28,9 +29,11 @@ namespace WeSplit.Model
         public System.DateTime date_start { get; set; }
         public Nullable<System.DateTime> date_end { get; set; }
         public Nullable<double> total_cost { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<journey_member> journey_member { get; set; }
+        private ICollection<journey_member> _journey_member; 
+        public virtual ICollection<journey_member> journey_member { get => _journey_member; set { _journey_member = value; OnPropertyChanged(); } }
+
         public virtual place place { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<route> routes { get; set; }

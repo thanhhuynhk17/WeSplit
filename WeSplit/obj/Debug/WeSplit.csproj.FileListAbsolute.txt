@@ -131,3 +131,5 @@ C:\WPF\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\PieChartUC.g.cs
 C:\WPF\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\PieChartUC.baml
 C:\WPF\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\ManagerMemberUC.g.cs
 C:\WPF\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\ManagerMemberUC.baml
+C:\WPF\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\AddMemberUC.g.cs
+C:\WPF\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\AddMemberUC.baml

@@ -56,17 +56,26 @@
                                  materialDesign:ShadowAssist.ShadowDepth="Depth2"
                                  Padding="4" Margin="4 4 4 10">
                 <StackPanel>
-                    <DataGrid ItemsSource="{Binding SelectedItem.journey_member}"
-                          CanUserAddRows="True"
-                          AutoGenerateColumns="False">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Họ tên" Binding="{Binding name}"/>
-                            <DataGridTextColumn Header="Số điện thoại" Binding="{Binding phone}"/>
-                            <DataGridTextColumn Header="Tiền thu" Binding="{Binding total_cost}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                    
+                    <ScrollViewer x:Name="scvMain" VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Visible">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <DataGrid Grid.Row="0" ItemsSource="{Binding SelectedItem.journey_member}"
+                                CanUserAddRows="True" AutoGenerateColumns="False">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Họ tên" Binding="{Binding journey_id}"/>
+                                    <DataGridTextColumn Header="Số điện thoại" Binding="{Binding member_id}"/>
+                                    <DataGridTextColumn Header="Tiền thu" Binding="{Binding journey_member_money}"/>
+                                </DataGrid.Columns>
 
+                            </DataGrid>
+                            <Button Click="AddMemberBtn_Click" Grid.Row="1"  Margin="0 15 0 0" Content="+" Width="40"></Button>
+                            
+                        </Grid>
+                    </ScrollViewer>
                 </StackPanel>
                 
             </materialDesign:Card>

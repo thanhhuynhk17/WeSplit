@@ -67,6 +67,8 @@
         </userControl:ManagerMemberUC>
         <userControl:AddPlace x:Name="NewPlaceUC" Grid.Row="2" Visibility="Hidden">
         </userControl:AddPlace>
+        <userControl:AddMemberUC x:Name="NewMemberUC" Grid.Row="2" Visibility="Hidden">
+        </userControl:AddMemberUC>
         <!--Content/-->
     </Grid>
 </Window>
