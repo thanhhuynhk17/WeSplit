@@ -18,11 +18,14 @@
              
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="1000">
+    <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                                     Grid.Row="1" Grid.Column="0" Padding="8" Margin="10">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        
         <Grid Grid.Row="0">
             <StackPanel Orientation="Horizontal" Width="1000">
                 <StackPanel Width="450" Margin="20 20 60 10">
@@ -53,6 +56,7 @@
                 </StackPanel>
             </StackPanel>
         </Grid>
+        
         <Grid Grid.Row="1" Margin="20">
             <Button Command="{Binding AddPlaceCmd}" Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="120"
                 ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
@@ -60,4 +64,5 @@
             </Button>
         </Grid>
     </Grid>
+    </materialDesign:Card>
 </UserControl>
