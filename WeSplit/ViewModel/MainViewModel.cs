@@ -12,6 +12,7 @@ using WeSplit.Model;
 
 using LiveCharts;
 using LiveCharts.Wpf;
+using System.Diagnostics;
 
 namespace WeSplit.ViewModel
 {
@@ -24,6 +25,8 @@ namespace WeSplit.ViewModel
         public ICommand ListJourneyCommand { get; set; }
         public ICommand ListJourneyGoneCommand { get; set; }
         public ICommand ListJourneyGoingToCommand { get; set; }
+        public ICommand FilterOptionCommand { get; set; }
+
         #endregion
 
         #region Place_Command
@@ -177,25 +180,45 @@ namespace WeSplit.ViewModel
                 ListRoute.Add(RouteIns);
             });
 
-            ListJourneyCommand = new RelayCommand<object>((p) =>{ return true; }, (p) =>
+            //ListJourneyCommand = new RelayCommand<object>((p) =>{ return true; }, (p) =>
+            //{
+            //    var ListEndOfTrip = DataProvider.Ins.DB.journeys.Where(x => x.name.Contains(Keyword)).ToList<journey>();
+            //    ListJourney = new ObservableCollection<journey>(ListEndOfTrip);
+            //});
+
+            //ListJourneyGoneCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+            //{
+            //    var ListJourneyGone = DataProvider.Ins.DB.journeys.Where(x=> x.status == 1).Where(x => x.name.Contains(Keyword)).ToList<journey>();
+            //    ListJourney = new ObservableCollection<journey>(ListJourneyGone);
+            //});
+
+            //ListJourneyGoingToCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+            //{
+            //    var ListJourneyGone = DataProvider.Ins.DB.journeys.Where(x => x.status == 2).Where(x => x.name.Contains(Keyword)).ToList<journey>();
+            //    ListJourney = new ObservableCollection<journey>(ListJourneyGone);
+            //});
+
+            // Filter 
+            FilterOptionCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
-                var ListEndOfTrip = DataProvider.Ins.DB.journeys.Where(x => x.name.Contains(Keyword)).ToList<journey>();
-                ListJourney = new ObservableCollection<journey>(ListEndOfTrip);
+                // Get selected status
+                var itemSelected = (ListBoxItem)p;
+                int statusSelected = Int32.Parse(itemSelected.Tag.ToString());
+
+
+                // Filter
+                if (statusSelected == 0){   // get all
+                    var ListJourneyFilter = DataProvider.Ins.DB.journeys.Where(x => x.name.Contains(Keyword)).ToList<journey>();
+                    ListJourney = new ObservableCollection<journey>(ListJourneyFilter);
+                }
+                else{   // filter by status
+                    var ListJourneyFilter = DataProvider.Ins.DB.journeys.Where(x => x.status == statusSelected).Where(x => x.name.Contains(Keyword)).ToList<journey>();
+                    ListJourney = new ObservableCollection<journey>(ListJourneyFilter);
+                }
             });
 
-            ListJourneyGoneCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
-            {
-                var ListJourneyGone = DataProvider.Ins.DB.journeys.Where(x=> x.status == 1).Where(x => x.name.Contains(Keyword)).ToList<journey>();
-                ListJourney = new ObservableCollection<journey>(ListJourneyGone);
-            });
-
-            ListJourneyGoingToCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
-            {
-                var ListJourneyGone = DataProvider.Ins.DB.journeys.Where(x => x.status == 2).Where(x => x.name.Contains(Keyword)).ToList<journey>();
-                ListJourney = new ObservableCollection<journey>(ListJourneyGone);
-            });
             #endregion
-            
+
             #region ControlBar handlers
             // Close Window
             CloseWindowCmd = new RelayCommand<UserControl>(

@@ -26,16 +26,19 @@
         </Grid.RowDefinitions>
         <!--Filter Menu-->
         <Grid Grid.Row="0" Margin="4">
-            <materialDesign:ColorZone Mode="Dark">
-                <StackPanel Orientation="Horizontal" Margin="5">
-                    <RadioButton Command="{Binding ListJourneyCommand}" Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" 
-                             IsChecked="True" Content="Toàn bộ chuyến đi" />
-                    <RadioButton Command="{Binding ListJourneyGoneCommand}" Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" 
-                             IsChecked="False" Content="Đã từng đi" />
-                    <RadioButton Command="{Binding ListJourneyGoingToCommand}" Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" 
-                             IsChecked="False" Content="Sắp đi" />
-                </StackPanel>
-            </materialDesign:ColorZone>
+            <ListBox Name="filterListBox" Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineListBox}">
+                <!--Trigger selection changed event-->
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding FilterOptionCommand}"  CommandParameter="{Binding ElementName=filterListBox, Path=SelectedItem}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <!--Trigger selection changed event/-->
+                
+                <ListBoxItem Tag="0" IsSelected="True" Content="Toàn bộ chuyến đi"/>
+                <ListBoxItem Tag="1" Content="Đã từng đi" />
+                <ListBoxItem Tag="2" Content="Sắp đi"/>
+            </ListBox>
         </Grid>
         <!--Filter Menu/-->
 
