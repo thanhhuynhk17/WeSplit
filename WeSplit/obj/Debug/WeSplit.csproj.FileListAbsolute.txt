@@ -129,3 +129,5 @@ C:\WPF\WeSplit\WeSplit\bin\Debug\LiveCharts.Wpf.pdb
 C:\WPF\WeSplit\WeSplit\bin\Debug\LiveCharts.Wpf.xml
 C:\WPF\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\PieChartUC.g.cs
 C:\WPF\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\PieChartUC.baml
+C:\WPF\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\ManagerMemberUC.g.cs
+C:\WPF\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\ManagerMemberUC.baml

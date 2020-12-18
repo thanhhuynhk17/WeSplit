@@ -153,6 +153,9 @@
     <Compile Include="UserControlWeSplit\HomeContentUC.xaml.cs">
       <DependentUpon>HomeContentUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControlWeSplit\ManagerMemberUC.xaml.cs">
+      <DependentUpon>ManagerMemberUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControlWeSplit\PieChartUC.xaml.cs">
       <DependentUpon>PieChartUC.xaml</DependentUpon>
     </Compile>
@@ -197,6 +200,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControlWeSplit\HomeContentUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlWeSplit\ManagerMemberUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

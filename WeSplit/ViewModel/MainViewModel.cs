@@ -55,6 +55,9 @@ namespace WeSplit.ViewModel
 
         private ObservableCollection<Model.place> _ListEndPlace;
         public ObservableCollection<Model.place> ListEndPlace { get => _ListEndPlace; set { _ListEndPlace = value; OnPropertyChanged(); } }
+
+        private ObservableCollection<Model.member> _ListMember;
+        public ObservableCollection<Model.member> ListMember { get => _ListMember; set { _ListMember = value; OnPropertyChanged(); } }
         #endregion
 
         #region property
@@ -129,6 +132,7 @@ namespace WeSplit.ViewModel
             ListPlace = new ObservableCollection<Model.place>(DataProvider.Ins.DB.places);
             ListProvince = new ObservableCollection<Model.province>(DataProvider.Ins.DB.provinces);
             ListRoute = new ObservableCollection<route>();
+            ListMember = new ObservableCollection<Model.member>(DataProvider.Ins.DB.members);
             SelectedPlace = ListPlace != null ? ListPlace.First() : null;
             SelectedProvince = ListProvince.Count != 0 ? ListProvince.First() : null;
             StartDate = EndDate = Today;

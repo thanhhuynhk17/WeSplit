@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="WeSplit.UserControlWeSplit.ManagerMemberUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WeSplit.UserControlWeSplit"
+             
+              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+             
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1000">
+    <Grid>
+        <materialDesign:Card Grid.Row="1" materialDesign:ShadowAssist.ShadowDepth="Depth5"
+                                 Padding="10" Margin="10">
+
+            <!--Binding list items-->
+            <ListView ItemsSource="{Binding ListMember, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" 
+                       SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                <ListView.View>
+                    <GridView AllowsColumnReorder="False">
+                        <GridViewColumn DisplayMemberBinding="{Binding id}"
+                                        Header="STT" />
+                        <GridViewColumn DisplayMemberBinding="{Binding name}"
+                                        Header="Tên thành viên" />
+                        <GridViewColumn DisplayMemberBinding="{Binding phone}"
+                                        Header="Số điên thoại" />
+                        <GridViewColumn Header="Action" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="{materialDesign:PackIcon Information}"
+                                            ToolTip="Icon" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <!--Binding list items/-->
+
+        </materialDesign:Card>    
+    </Grid>
+</UserControl>

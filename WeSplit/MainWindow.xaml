@@ -47,6 +47,8 @@
                              Margin="4" IsChecked="False" Content="Tạo mới chuyến đi" />
                 <RadioButton Click="NewPlaceBtn_Click" Style="{StaticResource MaterialDesignTabRadioButton}"
                              Margin="4" IsChecked="False" Content="Tạo mới địa danh"/>
+                <RadioButton Click="MemberBtn_Click" Style="{StaticResource MaterialDesignTabRadioButton}"
+                             Margin="4" IsChecked="False" Content="Thành viên"/>
                 <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}"
                              Margin="4" IsChecked="False" Content="Về chúng tôi"/>
             </StackPanel>
@@ -61,6 +63,8 @@
         </userControl:AddJourneyUC>
         <userControl:DetailUC x:Name="DetailJourneyUC" Grid.Row="2" Visibility="Hidden">
         </userControl:DetailUC>
+        <userControl:ManagerMemberUC x:Name="ManagerMemberUC" Grid.Row="2" Visibility="Hidden">
+        </userControl:ManagerMemberUC>
         <userControl:AddPlace x:Name="NewPlaceUC" Grid.Row="2" Visibility="Hidden">
         </userControl:AddPlace>
         <!--Content/-->
