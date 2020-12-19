@@ -181,7 +181,10 @@ namespace WeSplit.ViewModel
             }, (p) =>
             {
                 var total = _HireCarCost + _HireRoomCost + _PlaneTicketCost;
-                var journey = new journey() { name = Name, end_place = SelectedPlace.id, status=2, date_end = EndDate, date_start = StartDate, total_cost = total };
+                var journey = new journey() { name = Name, end_place = SelectedPlace.id, status=2, 
+                                            date_end = EndDate, date_start = StartDate,
+                                            hire_vehicle_cost = _HireCarCost, hire_room_cost = _HireRoomCost,
+                                            plane_ticket_cost = _PlaneTicketCost, total_cost = total };
 
                 DataProvider.Ins.DB.journeys.Add(journey);
                 foreach(route RouteIns in ListRoute)

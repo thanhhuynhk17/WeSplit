@@ -4,8 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fb345215e6e0409a9d6291dd50fe7666" Name="Diagram1">
-        <EntityTypeShape EntityType="WeSplitModel.journey" Width="1.5" PointX="5.25" PointY="2.375" IsExpanded="true" />
+      <Diagram DiagramId="da947115d497431bafa82fbff7233772" Name="Diagram1">
+        <EntityTypeShape EntityType="WeSplitModel.journey" Width="1.5" PointX="5.25" PointY="2.125" IsExpanded="true" />
         <EntityTypeShape EntityType="WeSplitModel.journey_member" Width="1.5" PointX="7.5" PointY="2.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WeSplitModel.member" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="WeSplitModel.place" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
