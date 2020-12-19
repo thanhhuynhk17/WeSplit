@@ -60,5 +60,15 @@ namespace WeSplit.Model
             }
             set { _ListMember = value; OnPropertyChanged(); }
         }
+
+        private string _ImageSource;
+        public string ImageSource { set { _ImageSource = value; } 
+            get 
+            {
+                place url = DataProvider.Ins.DB.places.Where(x => x.id == end_place).FirstOrDefault();
+                _ImageSource = url.image;
+                return _ImageSource;
+            } 
+        }
     }
 }

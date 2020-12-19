@@ -51,6 +51,7 @@ namespace WeSplit.ViewModel
         #region Detail_Command
         public ICommand ShowAddMemberCmd { get; set; }
         public ICommand BackToDetailCmd { get; set; }
+        public ICommand CloseJourneyCmd { get; set; }
         #endregion
 
         #region List_Model
@@ -297,6 +298,23 @@ namespace WeSplit.ViewModel
                 }
             });
 
+            CloseJourneyCmd = new RelayCommand<object>((p) =>
+            {
+                if(SelectedItem != null)
+                {
+                    if (SelectedItem.status == 1)
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }, (p) =>
+            {
+                SelectedItem.status = 1;
+                DataProvider.Ins.DB.SaveChanges();
+                MessageBox.Show("Chuyến đi kết thúc", "Thông Báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            });
+
             #endregion
 
             #region ControlBar handlers
@@ -419,7 +437,6 @@ namespace WeSplit.ViewModel
                 return true;
             }, (p) =>
             {
-               
                 IsInAddJourneyUC = "Hidden";
                 IsInAddMemberUC = "Visible";
                 IsInManagerMemberUC = "Hidden";
@@ -446,7 +463,10 @@ namespace WeSplit.ViewModel
                 DataProvider.Ins.DB.SaveChanges();
 
                 var journeyIns = (journey)DataProvider.Ins.DB.journeys.Where(x => x.id == SelectedItem.id).FirstOrDefault();
-                SelectedItem.journey_member = journeyIns.journey_member;
+                var input_money =jouney_member.journey_member_money;
+                double return_money = (double)(input_money - SelectedItem.total_cost);
+                MemberJourneyDetail detail = new MemberJourneyDetail() { name = MemberName, phone = MemberPhone, input_money = (double)input_money, return_money = return_money };
+                SelectedItem.ListMember.Add(detail);
 
                 MessageBox.Show("Thêm thành công", "Thông Báo", MessageBoxButton.OK, MessageBoxImage.Information);
             });
