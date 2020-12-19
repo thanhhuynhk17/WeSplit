@@ -156,3 +156,12 @@ VALUES (N'Cố Đô Huế', 'Assets\JourneyResources\co_do_hue\',N'',N'Tỉnh Th
 
 INSERT INTO place (name, image, description, address, province_id)
 VALUES (N'Vũng Tàu', 'Assets\JourneyResources\ba_ria_vung_tau\',N'',N'Thành phố Bà Rịa - Vũng Tàu',NULL);
+
+--Insert into member table
+insert into member values (N'Thành', '0212678986')
+insert into member values (N'Tài', '0122378546')
+insert into member values (N'Đức', '058745961')
+insert into member values (N'Thịnh', '012358746')
+insert into member values (N'Pháp', '8524123')
+insert into member values (N'Sắc', '012896364')
+insert into member values (N'Hội', '52974536')
