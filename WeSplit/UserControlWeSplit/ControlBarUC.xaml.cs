@@ -29,5 +29,6 @@ namespace WeSplit.UserControlWeSplit
             InitializeComponent();
             //this.DataContext = ViewModel = new ControlBarViewModel();
         }
+
     }
 }

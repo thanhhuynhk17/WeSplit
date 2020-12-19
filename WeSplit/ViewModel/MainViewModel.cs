@@ -12,6 +12,9 @@ using WeSplit.Model;
 
 using LiveCharts;
 using LiveCharts.Wpf;
+using System.Diagnostics;
+using System.Configuration;
+using System.Windows.Controls.Primitives;
 
 namespace WeSplit.ViewModel
 {
@@ -24,6 +27,9 @@ namespace WeSplit.ViewModel
         public ICommand ListJourneyCommand { get; set; }
         public ICommand ListJourneyGoneCommand { get; set; }
         public ICommand ListJourneyGoingToCommand { get; set; }
+        public ICommand FilterOptionCommand { get; set; }
+        public ICommand ToggleShowScrCmd { get; set; }
+
         #endregion
 
         #region Place_Command
@@ -68,6 +74,27 @@ namespace WeSplit.ViewModel
         #endregion
 
         #region property
+        // Show screen state
+        private bool _IsShowScr;
+        public bool IsShowScr
+        {
+            get{
+                _IsShowScr = bool.Parse(ConfigurationManager.AppSettings["isShowSplashScr"]);
+                return _IsShowScr;
+            }
+            set{
+                _IsShowScr = value;
+
+                // update config value 
+                var config = ConfigurationManager.OpenExeConfiguration(
+                    ConfigurationUserLevel.None);
+                config.AppSettings.Settings["isShowSplashScr"].Value = (value == true) ? "true" : "false";
+                config.Save(ConfigurationSaveMode.Minimal);
+
+                OnPropertyChanged();
+            }
+        }
+
         private string _Name;
         public string Name { get => _Name; set { _Name = value; OnPropertyChanged(); } }
 
@@ -207,7 +234,10 @@ namespace WeSplit.ViewModel
             }, (p) =>
             {
                 var total = _HireCarCost + _HireRoomCost + _PlaneTicketCost;
-                var journey = new journey() { name = Name, end_place = SelectedPlace.id, status=2, date_end = EndDate, date_start = StartDate, total_cost = total };
+                var journey = new journey() { name = Name, end_place = SelectedPlace.id, status=2, 
+                                            date_end = EndDate, date_start = StartDate,
+                                            hire_vehicle_cost = _HireCarCost, hire_room_cost = _HireRoomCost,
+                                            plane_ticket_cost = _PlaneTicketCost, total_cost = total };
 
                 DataProvider.Ins.DB.journeys.Add(journey);
                 foreach(route RouteIns in ListRoute)
@@ -230,25 +260,45 @@ namespace WeSplit.ViewModel
                 ListRoute.Add(RouteIns);
             });
 
-            ListJourneyCommand = new RelayCommand<object>((p) =>{ return true; }, (p) =>
+            //ListJourneyCommand = new RelayCommand<object>((p) =>{ return true; }, (p) =>
+            //{
+            //    var ListEndOfTrip = DataProvider.Ins.DB.journeys.Where(x => x.name.Contains(Keyword)).ToList<journey>();
+            //    ListJourney = new ObservableCollection<journey>(ListEndOfTrip);
+            //});
+
+            //ListJourneyGoneCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+            //{
+            //    var ListJourneyGone = DataProvider.Ins.DB.journeys.Where(x=> x.status == 1).Where(x => x.name.Contains(Keyword)).ToList<journey>();
+            //    ListJourney = new ObservableCollection<journey>(ListJourneyGone);
+            //});
+
+            //ListJourneyGoingToCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+            //{
+            //    var ListJourneyGone = DataProvider.Ins.DB.journeys.Where(x => x.status == 2).Where(x => x.name.Contains(Keyword)).ToList<journey>();
+            //    ListJourney = new ObservableCollection<journey>(ListJourneyGone);
+            //});
+
+            // Filter 
+            FilterOptionCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
-                var ListEndOfTrip = DataProvider.Ins.DB.journeys.Where(x => x.name.Contains(Keyword)).ToList<journey>();
-                ListJourney = new ObservableCollection<journey>(ListEndOfTrip);
+                // Get selected status
+                var itemSelected = (ListBoxItem)p;
+                int statusSelected = Int32.Parse(itemSelected.Tag.ToString());
+
+
+                // Filter
+                if (statusSelected == 0){   // get all
+                    var ListJourneyFilter = DataProvider.Ins.DB.journeys.Where(x => x.name.Contains(Keyword)).ToList<journey>();
+                    ListJourney = new ObservableCollection<journey>(ListJourneyFilter);
+                }
+                else{   // filter by status
+                    var ListJourneyFilter = DataProvider.Ins.DB.journeys.Where(x => x.status == statusSelected).Where(x => x.name.Contains(Keyword)).ToList<journey>();
+                    ListJourney = new ObservableCollection<journey>(ListJourneyFilter);
+                }
             });
 
-            ListJourneyGoneCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
-            {
-                var ListJourneyGone = DataProvider.Ins.DB.journeys.Where(x=> x.status == 1).Where(x => x.name.Contains(Keyword)).ToList<journey>();
-                ListJourney = new ObservableCollection<journey>(ListJourneyGone);
-            });
-
-            ListJourneyGoingToCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
-            {
-                var ListJourneyGone = DataProvider.Ins.DB.journeys.Where(x => x.status == 2).Where(x => x.name.Contains(Keyword)).ToList<journey>();
-                ListJourney = new ObservableCollection<journey>(ListJourneyGone);
-            });
             #endregion
-            
+
             #region ControlBar handlers
             // Close Window
             CloseWindowCmd = new RelayCommand<UserControl>(
@@ -299,6 +349,17 @@ namespace WeSplit.ViewModel
                                         var w = (window as Window);
                                         w.DragMove();
                                     });
+
+            // Toggle to change show splash screen state
+            ToggleShowScrCmd = new RelayCommand<object>(
+                                    (p) => { return p == null ? false : true; },
+                                    (p) =>
+                                    {
+                                        var toggleBtn = (ToggleButton)p;
+                                        IsShowScr = (bool)(toggleBtn.IsChecked);
+                                    });
+
+
 
             // Search Journey by keyword
             SearchJourneyCmd = new RelayCommand<UserControl>((p) => 

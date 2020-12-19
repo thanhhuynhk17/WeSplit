@@ -9,7 +9,7 @@
         xmlns:userControl="clr-namespace:WeSplit.UserControlWeSplit"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         DataContext="{StaticResource SplashScreenViewModel}"
-        
+
         mc:Ignorable="d"
         
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -29,7 +29,8 @@
     <!--Trigger-->
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding LoadedCmd}"/>
+            <i:InvokeCommandAction Command="{Binding LoadedCmd}"
+                                   CommandParameter="{Binding ElementName=splashScreenWindow}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <!--Trigger-->
@@ -110,10 +111,18 @@
                 <!--Describe-->
 
                 <!--Don't show again checkbox-->
-                <CheckBox Grid.Row="2" IsChecked="False" HorizontalAlignment="Right"
+                <!-- IsChecked="{Binding IsShowScr, Converter={StaticResource InverseBoolToVisConverter} }"-->
+                <CheckBox x:Name="showSplashCheckBox" Grid.Row="2" HorizontalAlignment="Right"
                           Style="{StaticResource MaterialDesignLightCheckBox}"
                           Content="Don't show this again." 
-                          Margin="10"/>
+                          Margin="10">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding CheckShowScrCmd}"
+                                                   CommandParameter="{Binding ElementName=showSplashCheckBox}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </CheckBox>
                 <!--Don't show again checkbox-->
 
             </Grid>
@@ -121,9 +130,8 @@
         <!--Suggest-->
 
         <!--Loading99%-->
-        <ProgressBar Grid.Row="2" Value="{Binding ProgressVal}" Height="5"
+        <ProgressBar Grid.Row="2" Value="{Binding ProgressBar}" Height="5"
                      materialDesign:TransitionAssist.DisableTransitions="True" />
-
         <!--Loading99%/-->
 
     </Grid>

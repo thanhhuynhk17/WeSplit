@@ -30,6 +30,9 @@ create table journey
 	status int,
 	date_start date not null,
 	date_end date,
+	hire_vehicle_cost float default 0,
+	hire_room_cost float default 0,
+	plane_ticket_cost float default 0,
 	total_cost float default 0 
 )
 
@@ -134,22 +137,22 @@ insert into province values (N'Bắc Giang', 98)
 insert into province values (N'Bắc Ninh', 99)
 
 --Insert into place table
-insert into place(name,image,description,address,province_id) values ('Phố cổ Hội An','Thành Phố Hoa Mĩ',N'Thành phố tuyệt vời','Điện bàn, Quảng Nam', 1);
+insert into place(name,image,description,address,province_id) values (N'Phố cổ Hội An','Thành Phố Hoa Mĩ',N'Thành phố tuyệt vời','Điện bàn, Quảng Nam', 1);
 
-INSERT INTO place (image, description, address, province_id)
-VALUES ('Assets\JourneyResources\dao_co_to\',N'Cô Tô có tên cổ là Chàng Sơn (Núi Chàng), từ lâu đời đã là nơi cư trú ngụ của thuyền bè ngư dân Vùng Đông Bắc, song chưa thành nơi định cư vì luôn bị những toán cướp biển Trung Quốc quấy phá. Đầu thời Nguyễn, một số ngư dân Trung Quốc bắt được những toán cướp biển và xin được nhập cư sinh sống.',N'Thị trấn Cô Tô - Tỉnh Quảng Ninh',NULL);
+INSERT INTO place (name, image, description, address, province_id)
+VALUES (N'Phố cổ Hội An', 'Assets\JourneyResources\dao_co_to\',N'Cô Tô có tên cổ là Chàng Sơn (Núi Chàng), từ lâu đời đã là nơi cư trú ngụ của thuyền bè ngư dân Vùng Đông Bắc, song chưa thành nơi định cư vì luôn bị những toán cướp biển Trung Quốc quấy phá. Đầu thời Nguyễn, một số ngư dân Trung Quốc bắt được những toán cướp biển và xin được nhập cư sinh sống.',N'Thị trấn Cô Tô - Tỉnh Quảng Ninh',NULL);
 
-INSERT INTO place (image, description, address, province_id)
-VALUES ('Assets\JourneyResources\da_lat\',N'Địa danh Đà Lạt được bắt nguồn từ chữ Đạ Lạch, tên gọi của con suối Cam Ly. Khởi nguồn từ huyện Lạc Dương, dòng suối Cam Ly chảy qua khu vực Đà Lạt theo hướng Bắc – Nam, trong đó đoạn từ khoảng Hồ Than Thở tới thác Cam Ly ngày nay được gọi là Đạ Lạch.[4] Theo ngôn ngữ của người Thượng, Da hay Dak có nghĩa là nước, tên gọi Đà Lạt có nghĩa nước của người Lát, hay suối của người Lát (người Cơ Ho).',N'Thành phố Đà Lạt - Tỉnh Lâm Đồng',NULL);
+INSERT INTO place (name, image, description, address, province_id)
+VALUES (N'Thành Phố Đà Lạt', 'Assets\JourneyResources\da_lat\',N'Địa danh Đà Lạt được bắt nguồn từ chữ Đạ Lạch, tên gọi của con suối Cam Ly. Khởi nguồn từ huyện Lạc Dương, dòng suối Cam Ly chảy qua khu vực Đà Lạt theo hướng Bắc – Nam, trong đó đoạn từ khoảng Hồ Than Thở tới thác Cam Ly ngày nay được gọi là Đạ Lạch.[4] Theo ngôn ngữ của người Thượng, Da hay Dak có nghĩa là nước, tên gọi Đà Lạt có nghĩa nước của người Lát, hay suối của người Lát (người Cơ Ho).',N'Thành phố Đà Lạt - Tỉnh Lâm Đồng',NULL);
 
-INSERT INTO place (image, description, address, province_id)
-VALUES ('Assets\JourneyResources\bao_tang_ca_phe\',N'Dân chúng thường quen gọi tên tỉnh này là Buôn Mê Thuột hơn là Daklak. Theo truyền tụng, Buôn Mê Thuột trước có tên là "Buôn Ma Thuốt", thổ ngữ của sắc tộc Rhadé. "Buôn" là làng, ấp. "Ma" là cha. "Thuốt" là tên con của vị tù trưởng Êdê, ngày xưa đã lãnh đạo dân chúng chống lại những người Cam Bốt và Ai Lao thường tràn qua biên giới cướp phá. Vì vậy, "Buôn Ma Thuốt" được đặt tên để tưởng nhớ vị tù trưởng anh hùng tên Thuốt.',N'Thành phố Buôn Ma Thuột - Tỉnh ĐăkLăk',NULL);
+INSERT INTO place (name, image, description, address, province_id)
+VALUES (N'Bảo tàng cà phê', 'Assets\JourneyResources\bao_tang_ca_phe\',N'Dân chúng thường quen gọi tên tỉnh này là Buôn Mê Thuột hơn là Daklak. Theo truyền tụng, Buôn Mê Thuột trước có tên là "Buôn Ma Thuốt", thổ ngữ của sắc tộc Rhadé. "Buôn" là làng, ấp. "Ma" là cha. "Thuốt" là tên con của vị tù trưởng Êdê, ngày xưa đã lãnh đạo dân chúng chống lại những người Cam Bốt và Ai Lao thường tràn qua biên giới cướp phá. Vì vậy, "Buôn Ma Thuốt" được đặt tên để tưởng nhớ vị tù trưởng anh hùng tên Thuốt.',N'Thành phố Buôn Ma Thuột - Tỉnh ĐăkLăk',NULL);
 
-INSERT INTO place (image, description, address, province_id)
-VALUES ('Assets\JourneyResources\dao_phu_quoc\',N'',N'Thị trấn Dương Đông - Tỉnh Kiên Giang',NULL);
+INSERT INTO place (name, image, description, address, province_id)
+VALUES (N'Đảo Phú Quốc', 'Assets\JourneyResources\dao_phu_quoc\',N'',N'Thị trấn Dương Đông - Tỉnh Kiên Giang',NULL);
 
-INSERT INTO place (image, description, address, province_id)
-VALUES ('Assets\JourneyResources\co_do_hue\',N'',N'Tỉnh Thừa Thiên Huế',NULL);
+INSERT INTO place (name, image, description, address, province_id)
+VALUES (N'Cố Đô Huế', 'Assets\JourneyResources\co_do_hue\',N'',N'Tỉnh Thừa Thiên Huế',NULL);
 
-INSERT INTO place (image, description, address, province_id)
-VALUES ('Assets\JourneyResources\ba_ria_vung_tau\',N'',N'Thành phố Bà Rịa - Vũng Tàu',NULL);
+INSERT INTO place (name, image, description, address, province_id)
+VALUES (N'Vũng Tàu', 'Assets\JourneyResources\ba_ria_vung_tau\',N'',N'Thành phố Bà Rịa - Vũng Tàu',NULL);

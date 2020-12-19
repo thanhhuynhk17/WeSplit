@@ -24,7 +24,7 @@
         ResizeMode="NoResize"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
-        Title="Main Window Title" Height="600" Width="1000">
+        Title="Main Window" Height="600" Width="1000">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -35,7 +35,7 @@
 
         <Grid Grid.Row="0">
             <!--Control Bar-->
-            <userControl:ControlBarUC Tag="{Binding Title, ElementName=mainWindow}"/>
+            <userControl:ControlBarUC Tag="{Binding IsShowScr}"/>
             <!--Control Bar/-->
         </Grid>
         <Grid Grid.Row="1">
@@ -55,7 +55,19 @@
             <!--App Menu/-->
         </Grid>
 
+        <!--Filter Menu
+        <Grid Grid.Row="2" Margin="4">
+            <ListBox Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineListBox}"
+                     x:Name="RadioButtonGroupChoiceChipPrimaryOutline">
+                
+                <ListBoxItem IsSelected="True" Content="Toàn bộ chuyến đi"/>
+                <ListBoxItem Content="Đã từng đi"/>
+                <ListBoxItem Content="Sắp đi"/>
 
+            </ListBox>
+        </Grid>
+        -->
+        <!--Filter Menu/-->
         <!--Content-->
         <userControl:AddJourneyUC Visibility="{Binding IsInAddJourneyUC}" x:Name="NewJourneyUC" Grid.Row="2">
         </userControl:AddJourneyUC>
