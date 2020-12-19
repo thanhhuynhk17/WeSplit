@@ -419,7 +419,7 @@ namespace WeSplit.ViewModel
                 return true;
             }, (p) =>
             {
-                MessageBox.Show("?");
+               
                 IsInAddJourneyUC = "Hidden";
                 IsInAddMemberUC = "Visible";
                 IsInManagerMemberUC = "Hidden";
