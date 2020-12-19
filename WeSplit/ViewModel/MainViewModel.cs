@@ -14,6 +14,7 @@ using LiveCharts;
 using LiveCharts.Wpf;
 using System.Diagnostics;
 using System.Configuration;
+using System.Windows.Controls.Primitives;
 
 namespace WeSplit.ViewModel
 {
@@ -27,6 +28,7 @@ namespace WeSplit.ViewModel
         public ICommand ListJourneyGoneCommand { get; set; }
         public ICommand ListJourneyGoingToCommand { get; set; }
         public ICommand FilterOptionCommand { get; set; }
+        public ICommand ToggleShowScrCmd { get; set; }
 
         #endregion
 
@@ -291,6 +293,17 @@ namespace WeSplit.ViewModel
                                         var w = (window as Window);
                                         w.DragMove();
                                     });
+
+            // Toggle to change show splash screen state
+            ToggleShowScrCmd = new RelayCommand<object>(
+                                    (p) => { return p == null ? false : true; },
+                                    (p) =>
+                                    {
+                                        var toggleBtn = (ToggleButton)p;
+                                        IsShowScr = (bool)(toggleBtn.IsChecked);
+                                    });
+
+
 
             // Search Journey by keyword
             SearchJourneyCmd = new RelayCommand<UserControl>((p) => 
