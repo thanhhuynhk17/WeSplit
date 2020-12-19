@@ -54,7 +54,7 @@
                 <!--Switch theme-->
                 <ToggleButton Style="{StaticResource MaterialDesignSwitchAccentToggleButton}"
                               VerticalAlignment="Center" Margin="10 0"
-                              DockPanel.Dock="Right" />
+                              DockPanel.Dock="Right"/>
                 <!--Switch theme-->
                 
                 <!--Left Content-->
