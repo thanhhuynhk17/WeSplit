@@ -111,6 +111,7 @@
     <Compile Include="Model\member.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\MemberJourneyDetail.cs" />
     <Compile Include="Model\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -141,6 +142,9 @@
     <Compile Include="UserControlWeSplit\AddJourneyUC.xaml.cs">
       <DependentUpon>AddJourneyUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControlWeSplit\AddMemberUC.xaml.cs">
+      <DependentUpon>AddMemberUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControlWeSplit\AddPlace.xaml.cs">
       <DependentUpon>AddPlace.xaml</DependentUpon>
     </Compile>
@@ -152,6 +156,9 @@
     </Compile>
     <Compile Include="UserControlWeSplit\HomeContentUC.xaml.cs">
       <DependentUpon>HomeContentUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlWeSplit\ManagerMemberUC.xaml.cs">
+      <DependentUpon>ManagerMemberUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControlWeSplit\PieChartUC.xaml.cs">
       <DependentUpon>PieChartUC.xaml</DependentUpon>
@@ -184,6 +191,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControlWeSplit\AddMemberUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControlWeSplit\AddPlace.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -197,6 +208,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControlWeSplit\HomeContentUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlWeSplit\ManagerMemberUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

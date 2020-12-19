@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="WeSplit.UserControlWeSplit.AddMemberUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WeSplit.UserControlWeSplit"
+             
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+             
+             
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1000">
+   
+        <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                                     Grid.Row="1" Grid.Column="0" Padding="8" Margin="10">
+        <StackPanel Width="1000" Height="580">
+            <TextBlock Margin="5 5 0 0" Text="Họ và Tên" Style="{StaticResource MaterialDesignBody2TextBlock}"></TextBlock>
+            <TextBox Text="{Binding MemberName}" Margin="5"  materialDesign:HintAssist.Hint="Họ và Tên" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+            <TextBlock Margin="5 15 0 0" Text="Số Điện Thoại" Style="{StaticResource MaterialDesignBody2TextBlock}"></TextBlock>
+            <TextBox Text="{Binding MemberPhone}" Margin="5" materialDesign:HintAssist.Hint="Số Điện Thoại" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+            <TextBlock Margin="5 15 0 0"  Text="Tiền thu" Style="{StaticResource MaterialDesignBody2TextBlock}"></TextBlock>
+            <TextBox Text="{Binding MemberMoney}" Margin="5" materialDesign:HintAssist.Hint="Tiền thu" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Click="BackBtn_Click"  Margin="10" Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="100"
+                ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
+                    Quay lại
+                </Button>
+                <Button Command="{Binding AddMemberCmd}"  Margin="10" Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="100"
+                ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
+                    Thêm
+                </Button>
+                
+            </StackPanel>
+        </StackPanel>
+            
+        </materialDesign:Card>
+   
+</UserControl>

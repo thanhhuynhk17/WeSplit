@@ -47,6 +47,8 @@
                              Margin="4" IsChecked="False" Content="Tạo mới chuyến đi" />
                 <RadioButton Click="NewPlaceBtn_Click" Style="{StaticResource MaterialDesignTabRadioButton}"
                              Margin="4" IsChecked="False" Content="Tạo mới địa danh"/>
+                <RadioButton Click="MemberBtn_Click" Style="{StaticResource MaterialDesignTabRadioButton}"
+                             Margin="4" IsChecked="False" Content="Thành viên"/>
                 <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}"
                              Margin="4" IsChecked="False" Content="Về chúng tôi"/>
             </StackPanel>
@@ -67,14 +69,18 @@
         -->
         <!--Filter Menu/-->
         <!--Content-->
-        <userControl:HomeContentUC x:Name="HomeUC" Grid.Row="2" Visibility="Visible">
-        </userControl:HomeContentUC>
-        <userControl:AddJourneyUC x:Name="NewJourneyUC" Grid.Row="2" Visibility="Hidden">
+        <userControl:AddJourneyUC Visibility="{Binding IsInAddJourneyUC}" x:Name="NewJourneyUC" Grid.Row="2">
         </userControl:AddJourneyUC>
-        <userControl:DetailUC x:Name="DetailJourneyUC" Grid.Row="2" Visibility="Hidden">
+        <userControl:DetailUC Visibility="{Binding IsInDetailUC }" x:Name="DetailJourneyUC" Grid.Row="2">
         </userControl:DetailUC>
-        <userControl:AddPlace x:Name="NewPlaceUC" Grid.Row="2" Visibility="Hidden">
+        <userControl:ManagerMemberUC Visibility="{Binding IsInManagerMemberUC}" x:Name="ManagerMemberUC" Grid.Row="2" >
+        </userControl:ManagerMemberUC>
+        <userControl:AddPlace Visibility="{Binding IsInAddPlace}" x:Name="NewPlaceUC" Grid.Row="2" >
         </userControl:AddPlace>
+        <userControl:AddMemberUC Visibility="{Binding IsInAddMemberUC}" x:Name="NewMemberUC" Grid.Row="2">
+        </userControl:AddMemberUC>
+        <userControl:HomeContentUC Visibility="{Binding IsInHomeContent}" x:Name="HomeUC" Grid.Row="2">
+        </userControl:HomeContentUC>
         <!--Content/-->
     </Grid>
 </Window>

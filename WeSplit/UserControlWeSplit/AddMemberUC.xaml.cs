@@ -16,16 +16,17 @@ using System.Windows.Shapes;
 namespace WeSplit.UserControlWeSplit
 {
     /// <summary>
-    /// Interaction logic for DetailUC.xaml
+    /// Interaction logic for AddMemberUC.xaml
     /// </summary>
-    public partial class DetailUC : UserControl
+    public partial class AddMemberUC : UserControl
     {
-        public DetailUC()
+        public AddMemberUC()
         {
             InitializeComponent();
+            
         }
 
-        private void AddMemberBtn_Click(object sender, RoutedEventArgs e)
+        private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement window = GetWindowParent(this);
             var w = window as Window;
@@ -37,8 +38,8 @@ namespace WeSplit.UserControlWeSplit
             HomeContentUC.Visibility = System.Windows.Visibility.Hidden;
             NewJourneyUC.Visibility = System.Windows.Visibility.Hidden;
             NewPlaceUC.Visibility = System.Windows.Visibility.Hidden;
-            DetailJourneyUC.Visibility = System.Windows.Visibility.Hidden;
-            NewMemberUC.Visibility = System.Windows.Visibility.Visible;
+            DetailJourneyUC.Visibility = System.Windows.Visibility.Visible;
+            NewMemberUC.Visibility = System.Windows.Visibility.Hidden;
         }
 
         FrameworkElement GetWindowParent(FrameworkElement p)
