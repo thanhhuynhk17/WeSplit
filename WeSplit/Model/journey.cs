@@ -11,8 +11,11 @@ namespace WeSplit.Model
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class journey
+    using System.Collections.ObjectModel;
+    using System.Linq;
+    using WeSplit.ViewModel;
+
+    public partial class journey :BaseViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public journey()
@@ -20,7 +23,7 @@ namespace WeSplit.Model
             this.journey_member = new HashSet<journey_member>();
             this.routes = new HashSet<route>();
         }
-    
+
         public int id { get; set; }
         public string name { get; set; }
         public Nullable<int> end_place { get; set; }
@@ -28,11 +31,33 @@ namespace WeSplit.Model
         public System.DateTime date_start { get; set; }
         public Nullable<System.DateTime> date_end { get; set; }
         public Nullable<double> total_cost { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<journey_member> journey_member { get; set; }
+        private ICollection<journey_member> _journey_member; 
+        public virtual ICollection<journey_member> journey_member { get => _journey_member; set { _journey_member = value; OnPropertyChanged(); } }
+
         public virtual place place { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<route> routes { get; set; }
+
+        private ObservableCollection<MemberJourneyDetail> _ListMember;
+        public ObservableCollection<MemberJourneyDetail> ListMember 
+        { 
+            get {
+                var journeyMember = this.journey_member;
+                _ListMember = new ObservableCollection<MemberJourneyDetail>();
+                foreach (journey_member JourneyMemberIns in journeyMember)
+                {
+                    member memberIns = DataProvider.Ins.DB.members.Where(x => x.id == JourneyMemberIns.member_id).FirstOrDefault();
+                    var input_money = (double)JourneyMemberIns.journey_member_money;
+                    double return_money = (double)(input_money - total_cost);
+                    var detail = new MemberJourneyDetail() { name = memberIns.name, phone = memberIns.phone, input_money = input_money, return_money = return_money };
+                    _ListMember.Add(detail);
+                }
+                return _ListMember;
+            }
+            set { _ListMember = value; OnPropertyChanged(); } 
+        }
+
     }
 }

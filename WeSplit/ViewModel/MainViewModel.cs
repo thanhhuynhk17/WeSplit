@@ -41,6 +41,8 @@ namespace WeSplit.ViewModel
         public ICommand MinimizeWindowCmd { get; set; }
         public ICommand MouseMoveWindowCmd { get; set; }
         public ICommand SearchJourneyCmd { get; set; }
+        public ICommand AddMemberCmd { get; set; }
+        public ICommand ShowDetailCmd { get; set; }
 
         #endregion
 
@@ -59,6 +61,9 @@ namespace WeSplit.ViewModel
 
         private ObservableCollection<Model.place> _ListEndPlace;
         public ObservableCollection<Model.place> ListEndPlace { get => _ListEndPlace; set { _ListEndPlace = value; OnPropertyChanged(); } }
+
+        private ObservableCollection<Model.member> _ListMember;
+        public ObservableCollection<Model.member> ListMember { get => _ListMember; set { _ListMember = value; OnPropertyChanged(); } }
         #endregion
 
         #region property
@@ -141,6 +146,41 @@ namespace WeSplit.ViewModel
 
         private string _PlaceImage;
         public string PlaceImage { get => _PlaceImage; set { _PlaceImage = value; OnPropertyChanged(); } }
+
+        private bool _IsShowAddMember;
+        public bool IsShowAddMember { get => _IsShowAddMember; set { _IsShowAddMember = value; OnPropertyChanged(); } }
+
+        private string _MemberName;
+        public string MemberName { get => _MemberName; set { _MemberName = value; OnPropertyChanged(); } }
+
+        private string _MemberPhone;
+        public string MemberPhone { get => _MemberPhone; set { _MemberPhone = value; OnPropertyChanged(); } }
+
+        private float _MemberMoney;
+        public float MemberMoney { get => _MemberMoney; set { _MemberMoney = value; OnPropertyChanged(); } }
+
+        private int _id;
+        public int id { get => _id; set { _id = value; OnPropertyChanged(); } }
+        #endregion
+
+        #region property_status_ui
+        private string _IsInHomeContent;
+        public string IsInHomeContent { get => _IsInHomeContent; set { _IsInHomeContent = value; OnPropertyChanged(); } }
+
+        private string _IsInAddJourneyUC;
+        public string IsInAddJourneyUC { get => _IsInAddJourneyUC; set { _IsInAddJourneyUC = value; OnPropertyChanged(); } }
+
+        private string _IsInDetailUC;
+        public string IsInDetailUC { get => _IsInDetailUC; set { _IsInDetailUC = value; OnPropertyChanged(); } }
+
+        private string _IsInManagerMemberUC;
+        public string IsInManagerMemberUC { get => _IsInManagerMemberUC; set { _IsInManagerMemberUC = value; OnPropertyChanged(); } }
+
+        private string _IsInAddPlace;
+        public string IsInAddPlace { get => _IsInAddPlace; set { _IsInAddPlace = value; OnPropertyChanged(); } }
+
+        private string _IsInAddMemberUC;
+        public string IsInAddMemberUC { get => _IsInAddMemberUC; set { _IsInAddMemberUC = value; OnPropertyChanged(); } }
         #endregion
 
         //Chart label
@@ -154,9 +194,17 @@ namespace WeSplit.ViewModel
             ListPlace = new ObservableCollection<Model.place>(DataProvider.Ins.DB.places);
             ListProvince = new ObservableCollection<Model.province>(DataProvider.Ins.DB.provinces);
             ListRoute = new ObservableCollection<route>();
+            ListMember = new ObservableCollection<Model.member>(DataProvider.Ins.DB.members);
+            IsShowAddMember = false;
             SelectedPlace = ListPlace != null ? ListPlace.First() : null;
             SelectedProvince = ListProvince.Count != 0 ? ListProvince.First() : null;
             StartDate = EndDate = Today;
+            IsInAddJourneyUC = "Hidden";
+            IsInManagerMemberUC = "Hidden";
+            IsInAddMemberUC = "Hidden";
+            IsInAddPlace = "Hidden";
+            IsInDetailUC = "Hidden";
+            IsInHomeContent = "Visible";
             #endregion
 
             #region Journey Handlers
@@ -343,6 +391,48 @@ namespace WeSplit.ViewModel
                     PlaceImage = dlg.FileName;
             });
             #endregion
+
+            #region Add Member Handlers
+            AddMemberCmd = new RelayCommand<object>((p) =>
+            {
+                if (string.IsNullOrEmpty(MemberName))
+                    return false;
+                return true;
+            }, (p) =>
+            {
+                var member = new member() { name = MemberName, phone = MemberPhone };
+                DataProvider.Ins.DB.members.Add(member);
+                ListMember.Add(member);
+                DataProvider.Ins.DB.SaveChanges();
+
+                var memberIns = (member)DataProvider.Ins.DB.members.Where(x => x.name.Equals(MemberName)).FirstOrDefault();
+                var jouney_member = new journey_member() { journey_id = SelectedItem.id, member_id = memberIns.id, journey_member_money = MemberMoney };
+                DataProvider.Ins.DB.journey_member.Add(jouney_member);
+                DataProvider.Ins.DB.SaveChanges();
+
+                var journeyIns = (journey)DataProvider.Ins.DB.journeys.Where(x => x.id == SelectedItem.id).FirstOrDefault();
+                SelectedItem.journey_member = journeyIns.journey_member;
+
+                MessageBox.Show("Thêm thành công", "Thông Báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            });
+            #endregion
+
+            #region Detail Handlers
+            ShowDetailCmd = new RelayCommand<object>((p) =>
+            {
+                return true;
+            }, (p) =>
+            {
+                IsInAddJourneyUC = "Hidden";
+                IsInAddMemberUC = "Hidden";
+                IsInManagerMemberUC = "Hidden";
+                IsInAddPlace = "Hidden";
+                IsInDetailUC = "Visible";
+                IsInHomeContent = "Hidden";
+                
+            });
+            #endregion
+            
             //Chart label
             PointLabel = chartPoint => $"{chartPoint.Y} ({chartPoint.Participation:P1})";
         }
