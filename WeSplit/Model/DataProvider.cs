@@ -23,11 +23,11 @@ namespace WeSplit.Model
             }
         }
 
-        public WeSplitEntities DB { get; set; }
+        public WeSplitEntities2 DB { get; set; }
 
         private DataProvider()
         {
-            DB = new WeSplitEntities();
+            DB = new WeSplitEntities2();
         }
     }
 }

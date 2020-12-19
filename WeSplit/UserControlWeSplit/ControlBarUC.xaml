@@ -7,7 +7,6 @@
              
                 xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
                 xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-
                 Name="ControlBar"
                 mc:Ignorable="d" 
                 d:DesignHeight="450" d:DesignWidth="800">
@@ -17,11 +16,13 @@
                                    CommandParameter="{Binding ElementName=ControlBar}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    
+
+
     <Grid>
         <materialDesign:ColorZone Mode="PrimaryMid"
                                   Padding="5">
             <DockPanel>
+                <!--Trigger toggle button changed-->
                 <!--Control Bar Buttons-->
                 <StackPanel DockPanel.Dock="Right" Background="Transparent" Orientation="Horizontal">
                     <!--WindowMinimize-->
@@ -52,9 +53,21 @@
                 <!--Control Bar Buttons/-->
 
                 <!--Switch theme-->
-                <ToggleButton Style="{StaticResource MaterialDesignSwitchAccentToggleButton}"
+                <ToggleButton Name="showSplashToggle" Style="{StaticResource MaterialDesignSwitchAccentToggleButton}"
                               VerticalAlignment="Center" Margin="10 0"
-                              DockPanel.Dock="Right"/>
+                              DockPanel.Dock="Right"
+                              IsChecked="{Binding Tag, ElementName=ControlBar}" ToolTip="Enable to show Splash Screen">
+                    <!--Trigger toggle button changed-->
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ToggleShowScrCmd}"
+                                                   CommandParameter="{Binding ElementName=showSplashToggle}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <!--Trigger toggle button changed-->
+
+
+                </ToggleButton>
                 <!--Switch theme-->
                 
                 <!--Left Content-->
@@ -102,7 +115,7 @@
 
                     
                     <!--Window Title-->
-                    <TextBlock VerticalAlignment="Center" Margin="20 0 0 0" Text="{Binding Tag, ElementName=ControlBar}"/>
+                    <!--<TextBlock VerticalAlignment="Center" Margin="20 0 0 0" Text="{Binding Tag, ElementName=ControlBar}"/>-->
                     <!--Window Title/-->
 
                 </StackPanel>
