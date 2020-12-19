@@ -13,6 +13,7 @@ using WeSplit.Model;
 using LiveCharts;
 using LiveCharts.Wpf;
 using System.Diagnostics;
+using System.Configuration;
 
 namespace WeSplit.ViewModel
 {
@@ -61,6 +62,27 @@ namespace WeSplit.ViewModel
         #endregion
 
         #region property
+        // Show screen state
+        private bool _IsShowScr;
+        public bool IsShowScr
+        {
+            get{
+                _IsShowScr = bool.Parse(ConfigurationManager.AppSettings["isShowSplashScr"]);
+                return _IsShowScr;
+            }
+            set{
+                _IsShowScr = value;
+
+                // update config value 
+                var config = ConfigurationManager.OpenExeConfiguration(
+                    ConfigurationUserLevel.None);
+                config.AppSettings.Settings["isShowSplashScr"].Value = (value == true) ? "true" : "false";
+                config.Save(ConfigurationSaveMode.Minimal);
+
+                OnPropertyChanged();
+            }
+        }
+
         private string _Name;
         public string Name { get => _Name; set { _Name = value; OnPropertyChanged(); } }
 
