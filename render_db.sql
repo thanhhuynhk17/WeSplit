@@ -156,3 +156,26 @@ VALUES (N'Cố Đô Huế', 'Assets\JourneyResources\co_do_hue\',N'',N'Tỉnh Th
 
 INSERT INTO place (name, image, description, address, province_id)
 VALUES (N'Vũng Tàu', 'Assets\JourneyResources\ba_ria_vung_tau\',N'',N'Thành phố Bà Rịa - Vũng Tàu',NULL);
+
+--Insert journey
+
+INSERT INTO journey(name, end_place, status, date_start, date_end, hire_vehicle_cost, hire_room_cost, plane_ticket_cost)
+VALUES (N'Đi Huế', NULL, 1, '10/4/2020', '10/5/2020', 120000, 450000, 300000);
+
+INSERT INTO journey(name, end_place, status, date_start, date_end, hire_vehicle_cost, hire_room_cost, plane_ticket_cost)
+VALUES (N'Đi tắm biển Cô Tô', NULL, 1, '9/4/2020', '9/5/2020', 200000, 150000, 700000);
+
+INSERT INTO journey(name, end_place, status, date_start, date_end, hire_vehicle_cost, hire_room_cost, plane_ticket_cost)
+VALUES (N'Đi bảo tàng cà phê', NULL, 1, '6/18/2020', '6/20/2020', 120000, 600000, 300000);
+
+INSERT INTO journey(name, end_place, status, date_start, date_end, hire_vehicle_cost, hire_room_cost, plane_ticket_cost)
+VALUES (N'Lên Đà Lạt', NULL, 1, '10/4/2020', '10/5/2020', 150000, 500000, 200000);
+
+INSERT INTO journey(name, end_place, status, date_start, date_end, hire_vehicle_cost, hire_room_cost, plane_ticket_cost)
+VALUES (N'Lại đi Huế', NULL, 2, '12/4/2020', '12/5/2020', 180000, 270000, 390000);
+
+INSERT INTO journey(name, end_place, status, date_start, date_end, hire_vehicle_cost, hire_room_cost, plane_ticket_cost)
+VALUES (N'Về Hội An', NULL, 2, '12/10/2020', '12/10/2020', 450000, 450000, 400000);
+
+INSERT INTO journey(name, end_place, status, date_start, date_end, hire_vehicle_cost, hire_room_cost, plane_ticket_cost)
+VALUES (N'Đi biển Vũng Tàu', NULL, 1, '3/4/2019', '3/5/2019', 125000, 750000, 920000);

@@ -58,6 +58,9 @@
                         <GridViewColumn DisplayMemberBinding="{Binding name, StringFormat='dd-MM-yyyy'}"
                                         Header="Tên chuyến đi" >
                         </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding status}"
+                                        Header="Trạng thái" >
+                        </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding date_start, StringFormat='dd-MM-yyyy'}"
                                         Header="Ngày khởi hành" />
                         <GridViewColumn DisplayMemberBinding="{Binding date_end, StringFormat='dd-MM-yyyy'}"

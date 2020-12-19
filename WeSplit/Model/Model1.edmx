@@ -322,7 +322,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="WeSplitEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="WeSplitEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="journeys" EntityType="Self.journey" />
           <EntitySet Name="journey_member" EntityType="Self.journey_member" />
           <EntitySet Name="members" EntityType="Self.member" />
@@ -359,7 +359,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="WeSplitModelStoreContainer" CdmEntityContainer="WeSplitEntities1">
+        <EntityContainerMapping StorageEntityContainer="WeSplitModelStoreContainer" CdmEntityContainer="WeSplitEntities">
           <EntitySetMapping Name="journeys">
             <EntityTypeMapping TypeName="WeSplitModel.journey">
               <MappingFragment StoreEntitySet="journey">

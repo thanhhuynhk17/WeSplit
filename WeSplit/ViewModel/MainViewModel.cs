@@ -48,6 +48,12 @@ namespace WeSplit.ViewModel
 
         #endregion
 
+        #region Chart Command
+        public ICommand LoadMoneyReceiveChartCmd { get; set; }
+        public ICommand LoadMoneyPayChartCmd { get; set; }
+
+        #endregion
+
         #region List_Model
         private ObservableCollection<Model.journey> _ListJourney;
         public ObservableCollection<Model.journey> ListJourney { get => _ListJourney; set { _ListJourney = value; OnPropertyChanged(); } }
@@ -342,7 +348,10 @@ namespace WeSplit.ViewModel
                                     (p) => {
                                         FrameworkElement window = WindowHandler.GetParentWindow(p);
                                         var w = (window as Window);
-                                        w.DragMove();
+
+                                        if (Mouse.LeftButton == MouseButtonState.Pressed){
+                                            w.DragMove();
+                                        }
                                     });
 
             // Toggle to change show splash screen state
@@ -448,9 +457,37 @@ namespace WeSplit.ViewModel
                 
             });
             #endregion
-            
-            //Chart label
+
+            #region Pie Chart Handlers
+            //Chart label format
             PointLabel = chartPoint => $"{chartPoint.Y} ({chartPoint.Participation:P1})";
+
+            // Load Money Pay Chart 
+            LoadMoneyPayChartCmd = new RelayCommand<object>(
+                                    (p) => { return p == null ? false : true; },
+                                    (p) =>
+                                    {
+                                        var payChart = (PieChart)p;
+
+                                        PieSeries pieSeries = new PieSeries();
+                                        var data = ListMember;
+                                    });
+            /*
+            //Add a new chart-series
+            string seriesname = "MySeriesName";
+            chart1.Series.Add(seriesname);
+            //set the chart-type to "Pie"
+            chart1.Series[seriesname].ChartType = SeriesChartType.Pie;
+
+            //Add some datapoints so the series. in this case you can pass the values to this method
+            chart1.Series[seriesname].Points.AddXY("MyPointName", value1);
+            chart1.Series[seriesname].Points.AddXY("MyPointName1", value2);
+            chart1.Series[seriesname].Points.AddXY("MyPointName2", value3);
+            chart1.Series[seriesname].Points.AddXY("MyPointName3", value4);
+            chart1.Series[seriesname].Points.AddXY("MyPointName4", value5);
+            */
+
+            #endregion
         }
     }
 }

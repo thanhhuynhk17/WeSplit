@@ -8,7 +8,8 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:userControl="clr-namespace:WeSplit.UserControlWeSplit"
-             
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+
             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
             TextElement.FontWeight="Regular"
             TextElement.FontSize="13"
@@ -47,7 +48,77 @@
             <materialDesign:Card Grid.Row="0"
                                  materialDesign:ShadowAssist.ShadowDepth="Depth2"
                                  Padding="4" Margin="4">
-                <userControl:PieChartUC/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="5*"/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <!--Money Receive-->
+                    <Grid Grid.Column="0" Margin="4">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+
+                        </Grid.RowDefinitions>
+
+                        <lvc:PieChart Grid.Row="0" Hoverable="True" DataTooltip="{x:Null}">
+                            <lvc:PieChart.Series>
+                                <lvc:PieSeries Values="1" DataLabels="True"/>
+                                <lvc:PieSeries Title="Charles" Values="4" DataLabels="True"
+                                   LabelPoint="{Binding PointLabel}"/>
+                                <lvc:PieSeries Title="Frida" Values="6" DataLabels="True"
+                                   LabelPoint="{Binding PointLabel}"/>
+                                <lvc:PieSeries Title="Frederic" Values="2" DataLabels="True"
+                                   LabelPoint="{Binding PointLabel}"/>
+                            </lvc:PieChart.Series>
+                        </lvc:PieChart>
+
+                        <!--Title-->
+                        <TextBlock Grid.Row="1" Text="Tổng thu" Style="{StaticResource MaterialDesignHeadline6TextBlock}" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+
+                        <!--Title/-->
+                    </Grid>
+                    <!--Money Receive/-->
+
+                    <!--Money Pay-->
+                    <Grid Grid.Column="1" Margin="4">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <lvc:PieChart Name="moneyPayChart"
+                          Grid.Row="0" Hoverable="True" DataTooltip="{x:Null}">
+                            <!--Trigger chart loaded-->
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Loaded">
+                                    <i:InvokeCommandAction Command="{Binding LoadMoneyPayChartCmd}"
+                                   CommandParameter="{Binding ElementName=moneyPayChart}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <!--Trigger chart loaded/-->
+                            <lvc:PieChart.Series>
+                                <lvc:PieSeries Title="Maria" Values="1" DataLabels="True"
+                                   LabelPoint="{Binding PointLabel}"/>
+                                <lvc:PieSeries Title="Charles" Values="4" DataLabels="True"
+                                   LabelPoint="{Binding PointLabel}"/>
+                                <lvc:PieSeries Title="Frida" Values="6" DataLabels="True"
+                                   LabelPoint="{Binding PointLabel}"/>
+                                <lvc:PieSeries Title="Frederic" Values="2" DataLabels="True"
+                                   LabelPoint="{Binding PointLabel}"/>
+                            </lvc:PieChart.Series>
+                        </lvc:PieChart>
+
+                        <!--Title-->
+                        <TextBlock Grid.Row="1" Text="Tổng chi" Style="{StaticResource MaterialDesignHeadline6TextBlock}" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+
+                        <!--Title/-->
+                    </Grid>
+                    <!--Money Pay/-->
+                </Grid>
+
             </materialDesign:Card>
             <!--Chart/-->
 
