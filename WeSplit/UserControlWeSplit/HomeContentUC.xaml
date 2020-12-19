@@ -50,7 +50,7 @@
 
             <!--Binding list items-->
             <ListView x:Name="ListView1" ItemsSource="{Binding ListJourney, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" 
-                       SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                       SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                        MouseDoubleClick="ListView_MouseDoubleClick">
                 <ListView.View>
                     <GridView AllowsColumnReorder="False">

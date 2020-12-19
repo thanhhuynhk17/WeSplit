@@ -196,3 +196,5 @@ C:\Wesplit\WeSplit\WeSplit\obj\Debug\WeSplit.csproj.CoreCompileInputs.cache
 C:\Wesplit\WeSplit\WeSplit\obj\Debug\WeSplit.csproj.CopyComplete
 C:\Wesplit\WeSplit\WeSplit\obj\Debug\WeSplit.exe
 C:\Wesplit\WeSplit\WeSplit\obj\Debug\WeSplit.pdb
+C:\Wesplit\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\EditMemberUC.g.cs
+C:\Wesplit\WeSplit\WeSplit\obj\Debug\UserControlWeSplit\EditMemberUC.baml

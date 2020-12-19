@@ -81,6 +81,8 @@
         </userControl:AddMemberUC>
         <userControl:HomeContentUC Visibility="{Binding IsInHomeContent}" x:Name="HomeUC" Grid.Row="2">
         </userControl:HomeContentUC>
+        <userControl:EditMemberUC Visibility="{Binding IsInEditMember}" x:Name="EditMemberUC" Grid.Row="2">
+        </userControl:EditMemberUC>
         <!--Content/-->
     </Grid>
 </Window>

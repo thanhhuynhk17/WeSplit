@@ -154,6 +154,9 @@
     <Compile Include="UserControlWeSplit\DetailUC.xaml.cs">
       <DependentUpon>DetailUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControlWeSplit\EditMemberUC.xaml.cs">
+      <DependentUpon>EditMemberUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControlWeSplit\HomeContentUC.xaml.cs">
       <DependentUpon>HomeContentUC.xaml</DependentUpon>
     </Compile>
@@ -204,6 +207,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControlWeSplit\DetailUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlWeSplit\EditMemberUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
