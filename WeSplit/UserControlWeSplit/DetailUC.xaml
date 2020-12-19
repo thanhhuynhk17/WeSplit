@@ -34,7 +34,12 @@
         <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}"
                    Text="Chi tiết chuyến đi"
                    Margin="4" Padding="4"/>
+        <Button x:Name="EndJourneyBtn" HorizontalAlignment="Right" Command="{Binding CloseJourneyCmd}">
+            Kết thúc chuyến đi
+        </Button>
+        
         <!--Title/-->
+        
 
         <!--Members-->
         <Grid Grid.Row="1" Grid.Column="0">
@@ -117,14 +122,21 @@
                         <TextBlock Style="{StaticResource MaterialDesignCaptionTextBlock}"
                                Text="Máy bay: "/>
                         <TextBlock Style="{StaticResource MaterialDesignCaptionTextBlock}"
-                               Text=" 204000"/>
+                               Text="{Binding Selected.plane_ticket_cost}"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Style="{StaticResource MaterialDesignCaptionTextBlock}"
-                               Text="Thuê trọ: "/>
+                               Text="Thuê phòng: "/>
                         <TextBlock Style="{StaticResource MaterialDesignCaptionTextBlock}"
-                               Text=" 204000"/>
+                               Text="{Binding Selected.hire_room_cost}"/>
+                    </StackPanel>
+                    
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource MaterialDesignCaptionTextBlock}"
+                               Text="Thuê xe: "/>
+                        <TextBlock Style="{StaticResource MaterialDesignCaptionTextBlock}"
+                               Text="{Binding Selected.hire_vehicle_cost}"/>
                     </StackPanel>
                     <!--Fixed fee/-->
 
@@ -160,7 +172,7 @@
                         <ColumnDefinition Width="5*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Image Grid.ColumnSpan="2" Source="../Assets/dau-tieng-lake.jpg"
+                    <Image Source="{Binding SelectedItem.ImageSource}" Grid.ColumnSpan="2" 
                        Stretch="Uniform"/>
                     <!--Prev-->
                     <Button Grid.Column="0" Style="{StaticResource MaterialDesignIconButton}"
