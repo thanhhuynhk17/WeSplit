@@ -38,6 +38,7 @@ namespace WeSplit.ViewModel
         public ICommand MouseMoveWindowCmd { get; set; }
         public ICommand SearchJourneyCmd { get; set; }
         public ICommand AddMemberCmd { get; set; }
+        public ICommand ShowDetailCmd { get; set; }
 
         #endregion
 
@@ -132,6 +133,29 @@ namespace WeSplit.ViewModel
 
         private float _MemberMoney;
         public float MemberMoney { get => _MemberMoney; set { _MemberMoney = value; OnPropertyChanged(); } }
+
+        private int _id;
+        public int id { get => _id; set { _id = value; OnPropertyChanged(); } }
+        #endregion
+
+        #region property_status_ui
+        private string _IsInHomeContent;
+        public string IsInHomeContent { get => _IsInHomeContent; set { _IsInHomeContent = value; OnPropertyChanged(); } }
+
+        private string _IsInAddJourneyUC;
+        public string IsInAddJourneyUC { get => _IsInAddJourneyUC; set { _IsInAddJourneyUC = value; OnPropertyChanged(); } }
+
+        private string _IsInDetailUC;
+        public string IsInDetailUC { get => _IsInDetailUC; set { _IsInDetailUC = value; OnPropertyChanged(); } }
+
+        private string _IsInManagerMemberUC;
+        public string IsInManagerMemberUC { get => _IsInManagerMemberUC; set { _IsInManagerMemberUC = value; OnPropertyChanged(); } }
+
+        private string _IsInAddPlace;
+        public string IsInAddPlace { get => _IsInAddPlace; set { _IsInAddPlace = value; OnPropertyChanged(); } }
+
+        private string _IsInAddMemberUC;
+        public string IsInAddMemberUC { get => _IsInAddMemberUC; set { _IsInAddMemberUC = value; OnPropertyChanged(); } }
         #endregion
 
         //Chart label
@@ -150,6 +174,12 @@ namespace WeSplit.ViewModel
             SelectedPlace = ListPlace != null ? ListPlace.First() : null;
             SelectedProvince = ListProvince.Count != 0 ? ListProvince.First() : null;
             StartDate = EndDate = Today;
+            IsInAddJourneyUC = "Hidden";
+            IsInManagerMemberUC = "Hidden";
+            IsInAddMemberUC = "Hidden";
+            IsInAddPlace = "Hidden";
+            IsInDetailUC = "Hidden";
+            IsInHomeContent = "Visible";
             #endregion
 
             #region Journey Handlers
@@ -337,8 +367,27 @@ namespace WeSplit.ViewModel
 
                 var journeyIns = (journey)DataProvider.Ins.DB.journeys.Where(x => x.id == SelectedItem.id).FirstOrDefault();
                 SelectedItem.journey_member = journeyIns.journey_member;
+
+                MessageBox.Show("Thêm thành công", "Thông Báo", MessageBoxButton.OK, MessageBoxImage.Information);
             });
             #endregion
+
+            #region Detail Handlers
+            ShowDetailCmd = new RelayCommand<object>((p) =>
+            {
+                return true;
+            }, (p) =>
+            {
+                IsInAddJourneyUC = "Hidden";
+                IsInAddMemberUC = "Hidden";
+                IsInManagerMemberUC = "Hidden";
+                IsInAddPlace = "Hidden";
+                IsInDetailUC = "Visible";
+                IsInHomeContent = "Hidden";
+                
+            });
+            #endregion
+            
             //Chart label
             PointLabel = chartPoint => $"{chartPoint.Y} ({chartPoint.Participation:P1})";
         }

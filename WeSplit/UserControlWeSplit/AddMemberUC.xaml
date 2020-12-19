@@ -29,10 +29,17 @@
             <TextBox Text="{Binding MemberPhone}" Margin="5" materialDesign:HintAssist.Hint="Số Điện Thoại" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
             <TextBlock Margin="5 15 0 0"  Text="Tiền thu" Style="{StaticResource MaterialDesignBody2TextBlock}"></TextBlock>
             <TextBox Text="{Binding MemberMoney}" Margin="5" materialDesign:HintAssist.Hint="Tiền thu" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-            <Button Command="{Binding AddMemberCmd}"  Margin="10" Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="100"
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Click="BackBtn_Click"  Margin="10" Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="100"
                 ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
-                Thêm
-            </Button>
+                    Quay lại
+                </Button>
+                <Button Command="{Binding AddMemberCmd}"  Margin="10" Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="100"
+                ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
+                    Thêm
+                </Button>
+                
+            </StackPanel>
         </StackPanel>
             
         </materialDesign:Card>
