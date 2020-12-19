@@ -52,6 +52,9 @@ namespace WeSplit.ViewModel
         public ICommand ShowAddMemberCmd { get; set; }
         public ICommand BackToDetailCmd { get; set; }
         public ICommand CloseJourneyCmd { get; set; }
+        public ICommand EditJourneyMemberCmd { get; set; }
+        public ICommand ShowEditMemberCmd { get; set; }
+        public ICommand EditMemberCmd { get; set; }
         #endregion
 
         #region List_Model
@@ -167,8 +170,8 @@ namespace WeSplit.ViewModel
         private float _MemberMoney;
         public float MemberMoney { get => _MemberMoney; set { _MemberMoney = value; OnPropertyChanged(); } }
 
-        private int _id;
-        public int id { get => _id; set { _id = value; OnPropertyChanged(); } }
+        private MemberJourneyDetail _SelectedMemberItem;
+        public MemberJourneyDetail SelectedMemberItem { get => _SelectedMemberItem; set { _SelectedMemberItem = value; OnPropertyChanged(); } }
         #endregion
 
         #region property_status_ui
@@ -189,6 +192,9 @@ namespace WeSplit.ViewModel
 
         private string _IsInAddMemberUC;
         public string IsInAddMemberUC { get => _IsInAddMemberUC; set { _IsInAddMemberUC = value; OnPropertyChanged(); } }
+
+        private string _IsInEditMember;
+        public string IsInEditMember { get => _IsInEditMember; set { _IsInEditMember = value; OnPropertyChanged(); } }
         #endregion
 
         //Chart label
@@ -212,6 +218,7 @@ namespace WeSplit.ViewModel
             IsInAddMemberUC = "Hidden";
             IsInAddPlace = "Hidden";
             IsInDetailUC = "Hidden";
+            IsInEditMember = "Hidden";
             IsInHomeContent = "Visible";
             #endregion
 
@@ -443,6 +450,7 @@ namespace WeSplit.ViewModel
                 IsInAddPlace = "Hidden";
                 IsInDetailUC = "Hidden";
                 IsInHomeContent = "Hidden";
+                IsInEditMember = "Hidden";
 
             });
             AddMemberCmd = new RelayCommand<object>((p) =>
@@ -484,6 +492,7 @@ namespace WeSplit.ViewModel
                 IsInAddPlace = "Hidden";
                 IsInDetailUC = "Visible";
                 IsInHomeContent = "Hidden";
+                IsInEditMember = "Hidden";
 
             });
             ShowDetailCmd = new RelayCommand<object>((p) =>
@@ -497,10 +506,37 @@ namespace WeSplit.ViewModel
                 IsInAddPlace = "Hidden";
                 IsInDetailUC = "Visible";
                 IsInHomeContent = "Hidden";
-                
+                IsInEditMember = "Hidden";
+
+            });
+            ShowEditMemberCmd = new RelayCommand<object>((p) =>
+            {
+                return true;
+            }, (p) =>
+            {
+                IsInAddJourneyUC = "Hidden";
+                IsInAddMemberUC = "Hidden";
+                IsInManagerMemberUC = "Hidden";
+                IsInAddPlace = "Hidden";
+                IsInDetailUC = "Hidden";
+                IsInHomeContent = "Hidden";
+                IsInEditMember = "Visible";
+
+                var dataGrid = (DataGrid)p;
+                var item = dataGrid.SelectedItem;
+                SelectedMemberItem = (MemberJourneyDetail)item;
+            });
+
+            EditMemberCmd = new RelayCommand<object>((p) =>
+            {
+                return true;
+            }, (p) =>
+            {
+                DataProvider.Ins.DB.SaveChanges();
+                MessageBox.Show("Cập nhật thành công", "Thông Báo", MessageBoxButton.OK, MessageBoxImage.Information);
             });
             #endregion
-            
+
             //Chart label
             PointLabel = chartPoint => $"{chartPoint.Y} ({chartPoint.Participation:P1})";
         }

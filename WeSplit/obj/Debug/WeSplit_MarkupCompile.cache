@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Wesplit\WeSplit\WeSplit\App.xaml
-112056547672
+122033599353
 2-1556844510
-30-1380278514
+31-1955582236
 321503281368
-MainWindow.xaml;ResourceXAML\MainResource.xaml;SplashScreenWindow.xaml;UserControlWeSplit\AddJourneyUC.xaml;UserControlWeSplit\AddMemberUC.xaml;UserControlWeSplit\AddPlace.xaml;UserControlWeSplit\ControlBarUC.xaml;UserControlWeSplit\DetailUC.xaml;UserControlWeSplit\HomeContentUC.xaml;UserControlWeSplit\ManagerMemberUC.xaml;UserControlWeSplit\PieChartUC.xaml;
+MainWindow.xaml;ResourceXAML\MainResource.xaml;SplashScreenWindow.xaml;UserControlWeSplit\AddJourneyUC.xaml;UserControlWeSplit\AddMemberUC.xaml;UserControlWeSplit\AddPlace.xaml;UserControlWeSplit\ControlBarUC.xaml;UserControlWeSplit\DetailUC.xaml;UserControlWeSplit\EditMemberUC.xaml;UserControlWeSplit\HomeContentUC.xaml;UserControlWeSplit\ManagerMemberUC.xaml;UserControlWeSplit\PieChartUC.xaml;
 
 False
 
