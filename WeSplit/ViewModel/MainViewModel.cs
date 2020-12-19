@@ -54,6 +54,11 @@ namespace WeSplit.ViewModel
 
         #endregion
 
+        #region Detail_Command
+        public ICommand ShowAddMemberCmd { get; set; }
+        public ICommand BackToDetailCmd { get; set; }
+        #endregion
+
         #region List_Model
         private ObservableCollection<Model.journey> _ListJourney;
         public ObservableCollection<Model.journey> ListJourney { get => _ListJourney; set { _ListJourney = value; OnPropertyChanged(); } }
@@ -418,6 +423,20 @@ namespace WeSplit.ViewModel
             #endregion
 
             #region Add Member Handlers
+            ShowAddMemberCmd = new RelayCommand<object>((p) =>
+            {
+                return true;
+            }, (p) =>
+            {
+               
+                IsInAddJourneyUC = "Hidden";
+                IsInAddMemberUC = "Visible";
+                IsInManagerMemberUC = "Hidden";
+                IsInAddPlace = "Hidden";
+                IsInDetailUC = "Hidden";
+                IsInHomeContent = "Hidden";
+
+            });
             AddMemberCmd = new RelayCommand<object>((p) =>
             {
                 if (string.IsNullOrEmpty(MemberName))
@@ -443,6 +462,19 @@ namespace WeSplit.ViewModel
             #endregion
 
             #region Detail Handlers
+            BackToDetailCmd = new RelayCommand<object>((p) =>
+            {
+                return true;
+            }, (p) =>
+            {
+                IsInAddJourneyUC = "Hidden";
+                IsInAddMemberUC = "Hidden";
+                IsInManagerMemberUC = "Hidden";
+                IsInAddPlace = "Hidden";
+                IsInDetailUC = "Visible";
+                IsInHomeContent = "Hidden";
+
+            });
             ShowDetailCmd = new RelayCommand<object>((p) =>
             {
                 return true;

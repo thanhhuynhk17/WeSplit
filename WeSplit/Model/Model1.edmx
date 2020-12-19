@@ -19,6 +19,9 @@
           <Property Name="hire_room_cost" Type="float" />
           <Property Name="plane_ticket_cost" Type="float" />
           <Property Name="total_cost" Type="float" />
+          <Property Name="hire_vehicle_cost" Type="float" />
+          <Property Name="hire_room_cost" Type="float" />
+          <Property Name="plane_ticket_cost" Type="float" />
         </EntityType>
         <EntityType Name="journey_member">
           <Key>
@@ -190,6 +193,9 @@
           <Property Name="hire_room_cost" Type="Double" />
           <Property Name="plane_ticket_cost" Type="Double" />
           <Property Name="total_cost" Type="Double" />
+          <Property Name="hire_vehicle_cost" Type="Double" />
+          <Property Name="hire_room_cost" Type="Double" />
+          <Property Name="plane_ticket_cost" Type="Double" />
           <NavigationProperty Name="journey_member" Relationship="Self.FK_Journey_MemberJourney" FromRole="journey" ToRole="journey_member" />
           <NavigationProperty Name="place" Relationship="Self.FK_JourneyPlace" FromRole="journey" ToRole="place" />
           <NavigationProperty Name="routes" Relationship="Self.FK_RouteJourney" FromRole="journey" ToRole="route" />
@@ -322,7 +328,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="WeSplitEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="WeSplitEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="journeys" EntityType="Self.journey" />
           <EntitySet Name="journey_member" EntityType="Self.journey_member" />
           <EntitySet Name="members" EntityType="Self.member" />
@@ -359,7 +365,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="WeSplitModelStoreContainer" CdmEntityContainer="WeSplitEntities">
+        <EntityContainerMapping StorageEntityContainer="WeSplitModelStoreContainer" CdmEntityContainer="WeSplitEntities2">
           <EntitySetMapping Name="journeys">
             <EntityTypeMapping TypeName="WeSplitModel.journey">
               <MappingFragment StoreEntitySet="journey">
@@ -373,6 +379,9 @@
                 <ScalarProperty Name="hire_room_cost" ColumnName="hire_room_cost" />
                 <ScalarProperty Name="plane_ticket_cost" ColumnName="plane_ticket_cost" />
                 <ScalarProperty Name="total_cost" ColumnName="total_cost" />
+                <ScalarProperty Name="hire_vehicle_cost" ColumnName="hire_vehicle_cost" />
+                <ScalarProperty Name="hire_room_cost" ColumnName="hire_room_cost" />
+                <ScalarProperty Name="plane_ticket_cost" ColumnName="plane_ticket_cost" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

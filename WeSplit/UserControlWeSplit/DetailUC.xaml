@@ -143,7 +143,7 @@
                                 </DataGrid.Columns>
 
                             </DataGrid>
-                            <Button Click="AddMemberBtn_Click" Grid.Row="1"  Margin="0 15 0 0" Content="+" Width="40"></Button>
+                            <Button Command="{Binding ShowAddMemberCmd}" Grid.Row="1"  Margin="0 15 0 0" Content="+" Width="40"></Button>
                             
                         </Grid>
                     </ScrollViewer>
