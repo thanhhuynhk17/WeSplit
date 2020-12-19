@@ -223,7 +223,7 @@
             <materialDesign:Card Grid.Row="0"
                                  materialDesign:ShadowAssist.ShadowDepth="Depth2"
                                  Padding="4" Margin="4">
-                <Image Source="../Assets/dau-tieng-lake.jpg"
+                <Image Source="{Binding SelectedItem.ImageSource}"
                        Width="Auto" 
                        Stretch="Uniform"/>
             </materialDesign:Card>
